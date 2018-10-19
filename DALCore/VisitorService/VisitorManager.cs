@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using Core.Contracts;
+using Core.Contracts.Models;
 using DALCore.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -250,6 +251,28 @@ namespace VisitorService
             {
                 throw new Exception("Could not get Visitors. Please try again" + ex.StackTrace);
             }
+        }
+        public void AddNewVisitor(NewVisitorFormData newVisitorData)
+        {
+            var entity = new VisitorsDatabaseContext();
+            entity.Database.ExecuteSqlCommand("insert into Visitors(NameOfVisitor,Contact,VisitorImage,GovtIdProof) values('"+newVisitorData.nameOfVisitor +"','"+newVisitorData.contactNo+"','image','"+newVisitorData.govtIdProof+"')");
+            List<Visitors> visitorEntry= entity.Visitors.FromSql("select * from Visitors where NameOfVisitor = @searchInput", new SqlParameter("@searchInput",newVisitorData.nameOfVisitor)).ToList<Visitors>();
+            List<Employees> empEntry = entity.Employees.FromSql("select * from Employees where EmployeeName = @searchInput", new SqlParameter("@searchInput", newVisitorData.whomToMeet)).ToList<Employees>();
+            entity.Database.ExecuteSqlCommand("insert into VisitorsLogs(ComingFrom,WhomToMeet,EmployeeId,DateOfVisit,TimeIn,TimeOut,VisitorId,GuardId,PurposeOfVisit) values('" + newVisitorData.comingFrom + "','" + newVisitorData.whomToMeet + "','" + empEntry[0].EmployeeId+"','"+DateTime.Today+"','" + DateTime.Now+"','22:30:00.0000000','" + visitorEntry[0].VisitorId+"','"+ newVisitorData.guardId + "','"+newVisitorData.purposeOfVisit+"')");
+        }
+        public List<MatchingSubstring> AllMatchingEmployeeNames(string userInput)
+        {
+            List<MatchingSubstring> MatchingResults = new List<MatchingSubstring>();
+            var entity = new VisitorsDatabaseContext();
+            userInput = "%" + userInput + "%";
+            List<Employees> employeesList = entity.Employees.FromSql("select * from Employees where EmployeeName Like @searchInput", new SqlParameter("@searchInput", userInput)).ToList<Employees>();
+            foreach(var Entry in employeesList)
+            {
+                MatchingSubstring name = new MatchingSubstring();
+                name.MatchingResult = Entry.EmployeeName;
+                MatchingResults.Add(name);
+            }
+            return MatchingResults;
         }
         public void ClearList()
         {

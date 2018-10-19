@@ -69,5 +69,17 @@ namespace DALCore.Controllers
         {
             return visitor.GetUniqueVisitorsByName(Name.UserInput);
         }
+        [HttpPost]
+        [Route("api/[controller]/AddNewVisitor")]
+        public void NewVisitorEntry([FromBody]NewVisitorFormData newVisitor)
+        {
+            visitor.AddNewVisitor(newVisitor);
+        }
+        [HttpPut]
+        [Route("api/[controller]/EmployeesMatchingSubstring")]
+        public List<MatchingSubstring> GetMatchingEmployeesNames([FromBody]SearchFilter Name)
+        {
+            return visitor.AllMatchingEmployeeNames(Name.UserInput);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Core.Contracts;
+using Core.Contracts.Models;
 using DALCore.Models;
 
 namespace VisitorService
@@ -16,6 +17,8 @@ namespace VisitorService
         List<VisitorsData> GetVisitorLogByNameAndDate(string nameOfVisitor, string fromDate, string toDate, string fromTime, string toTime);
         List<Visitors> GetUniqueVisitors();
         List<Visitors> GetUniqueVisitorsByName(string searchInput);
+        void AddNewVisitor(NewVisitorFormData newVisitorData);
+        List<MatchingSubstring> AllMatchingEmployeeNames(string userInput);
     }
 
 }
