@@ -1,0 +1,4 @@
+C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\AdminService.csprojAssemblyReference.cache
+C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\AdminService.csproj.CoreCompileInputs.cache
+C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\AdminService.AssemblyInfoInputs.cache
+C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\AdminService.AssemblyInfo.cs
