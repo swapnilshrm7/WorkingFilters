@@ -1,0 +1,12 @@
+C:\Users\swapnil\source\repos\DALCore\VisitorService\bin\Debug\netcoreapp2.1\VisitorService.deps.json
+C:\Users\swapnil\source\repos\DALCore\VisitorService\bin\Debug\netcoreapp2.1\VisitorService.dll
+C:\Users\swapnil\source\repos\DALCore\VisitorService\bin\Debug\netcoreapp2.1\VisitorService.pdb
+C:\Users\swapnil\source\repos\DALCore\VisitorService\bin\Debug\netcoreapp2.1\Core.Contracts.dll
+C:\Users\swapnil\source\repos\DALCore\VisitorService\bin\Debug\netcoreapp2.1\Core.Contracts.pdb
+C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.csprojAssemblyReference.cache
+C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.csproj.CoreCompileInputs.cache
+C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.AssemblyInfoInputs.cache
+C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.AssemblyInfo.cs
+C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.csproj.CopyComplete
+C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.dll
+C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.pdb

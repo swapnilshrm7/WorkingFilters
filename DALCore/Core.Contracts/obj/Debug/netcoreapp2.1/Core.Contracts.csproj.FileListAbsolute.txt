@@ -1,0 +1,9 @@
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\bin\Debug\netcoreapp2.1\Core.Contracts.deps.json
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\bin\Debug\netcoreapp2.1\Core.Contracts.dll
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\bin\Debug\netcoreapp2.1\Core.Contracts.pdb
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\obj\Debug\netcoreapp2.1\Core.Contracts.csprojAssemblyReference.cache
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\obj\Debug\netcoreapp2.1\Core.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\obj\Debug\netcoreapp2.1\Core.Contracts.AssemblyInfoInputs.cache
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\obj\Debug\netcoreapp2.1\Core.Contracts.AssemblyInfo.cs
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\obj\Debug\netcoreapp2.1\Core.Contracts.dll
+C:\Users\swapnil\source\repos\DALCore\Core.Contracts\obj\Debug\netcoreapp2.1\Core.Contracts.pdb
