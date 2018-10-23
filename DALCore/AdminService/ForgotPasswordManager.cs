@@ -1,4 +1,5 @@
-﻿using DALCore.Models;
+﻿using Core.Contracts.Models;
+using DALCore.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace UserService
 {
-    public class ForgotPasswordManager
+    public class ForgotPasswordManager : IForgotPassword
     {
         public void ForgotPassword_SendAndUpdateOtp(string userId)
         {
@@ -18,7 +19,7 @@ namespace UserService
                 List<LoginCredentials> visitorCredentials = entity.LoginCredentials.FromSql("select * from LoginCredentials where UserId  = @Id", new SqlParameter("@Id", userId)).ToList<LoginCredentials>();
                 SMSGeneration smsGeneration = new SMSGeneration();
                 int otp = smsGeneration.SMS(Convert.ToInt64(visitorCredentials[0].ContactNo));
-                entity.LoginCredentials.FromSql("UPDATE LoginCredentials SET Otp = @expectedOtp WHERE UserId = @Id;", new SqlParameter("@Id", userId), new SqlParameter("@expectedOtp", otp));
+                entity.Database.ExecuteSqlCommand("UPDATE LoginCredentials SET Otp = @expectedOtp WHERE UserId = @Id;", new SqlParameter("@expectedOtp", otp), new SqlParameter("@Id", userId));
             }
             catch (Exception ex)
             {
@@ -30,7 +31,8 @@ namespace UserService
             try
             {
                 var entity = new VisitorsDatabaseContext();
-                if (entity.LoginCredentials.FromSql("select * from LoginCredentials where UserId  = @Id, Otp  = @otpEntered", new SqlParameter("@Id", userId), new SqlParameter("@otpEntered", otpEnteredByUser)) != null)
+                List<LoginCredentials> response = entity.LoginCredentials.FromSql("select * from LoginCredentials where UserId  = @Id and Otp  = @otpEntered", new SqlParameter("@Id", userId), new SqlParameter("@otpEntered", otpEnteredByUser)).ToList<LoginCredentials>();
+                if(response.Count==1)
                     return true;
                 return false;
             }
@@ -61,7 +63,7 @@ namespace UserService
                     hash = sb.ToString();
                 }
                 var entity = new VisitorsDatabaseContext();
-                entity.LoginCredentials.FromSql("UPDATE LoginCredentials SET Password  = @enewPassword and SavingTime =@savingTime WHERE UserId = @Id;", new SqlParameter("@Id", userId), new SqlParameter("@savingTime", time), new SqlParameter("@enewPassword", hash));
+                entity.Database.ExecuteSqlCommand("UPDATE LoginCredentials SET Password  = @newPassword , SavingTime =@savingTime WHERE UserId = @Id", new SqlParameter("@newPassword", hash), new SqlParameter("@savingTime", time), new SqlParameter("@Id", userId));
             }
             catch (Exception ex)
             {

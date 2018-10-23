@@ -12,39 +12,20 @@ using Newtonsoft.Json.Linq;
 
 namespace DALCore.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        IUserAuthentication admin;
-        IForgotPassword user;
+        IUserAuthentication admin; 
         public UserController(IUserAuthentication _admin)
         {
             admin = _admin;
-        }
-        public UserController(IForgotPassword _user)
-        {
-            user = _user;
-        }
+        } 
         [HttpPut]
+        [Route("api/[controller]/Login")]
         public bool ValidateUser([FromBody]LoginBasicDetails loginBasicDetails)
-        {
+        { 
             return admin.UserValidation(loginBasicDetails.UserId, loginBasicDetails.Password);
         }
-        [HttpPut]
-        public void ForgotPasswordOtp(string userId)
-        {
-            user.ForgotPassword_SendAndUpdateOtp(userId);
-        }
-        [HttpPut]
-        public void ForgotPassword_ValidateUserByOtp(string userId, int otp)
-        {
-            user.ForgotPassword_CheckOtpEnteredByUser(userId, otp);
-        }
-        [HttpPut]
-        public void ResetPassword(string userId, string newPassword)
-        {
-            user.SetNewPassword(userId, newPassword);
-        }
+       
     }
 }

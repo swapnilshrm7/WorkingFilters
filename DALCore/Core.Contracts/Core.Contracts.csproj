@@ -17,6 +17,7 @@
     <Compile Include="Models\Guard.cs" />
     <Compile Include="Models\GuardData.cs" />
     <Compile Include="Models\GuardLogs.cs" />
+    <Compile Include="Models\IdAndOtp.cs" />
     <Compile Include="Models\LoginBasicDetails.cs" />
     <Compile Include="Models\LoginCredentials.cs" />
     <Compile Include="Models\MatchingSubstring.cs" />

@@ -24,7 +24,8 @@ namespace DALCore
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IVisitor, VisitorManager>();
             services.AddTransient<IGuard, GuardManager>();
-            services.AddTransient<IUserAuthentication, UserLoginManager>();
+            services.AddTransient<IUserAuthentication, UserLoginManager>();  
+            services.AddTransient<IForgotPassword, ForgotPasswordManager>();
             //DI 
         }
 
