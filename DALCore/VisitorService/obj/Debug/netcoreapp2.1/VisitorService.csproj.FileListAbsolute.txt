@@ -10,3 +10,5 @@ C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\Vis
 C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.csproj.CopyComplete
 C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.dll
 C:\Users\swapnil\source\repos\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.pdb
+C:\Users\swapnil\source\repos\DALCore\VisitorService\bin\Debug\netcoreapp2.1\UserService.dll
+C:\Users\swapnil\source\repos\DALCore\VisitorService\bin\Debug\netcoreapp2.1\UserService.pdb

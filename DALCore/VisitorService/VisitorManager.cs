@@ -6,6 +6,7 @@ using Core.Contracts;
 using Core.Contracts.Models;
 using DALCore.Models;
 using Microsoft.EntityFrameworkCore;
+using UserService;
 
 namespace VisitorService
 {
@@ -256,9 +257,14 @@ namespace VisitorService
         {
             var entity = new VisitorsDatabaseContext();
             entity.Database.ExecuteSqlCommand("insert into Visitors(NameOfVisitor,Contact,VisitorImage,GovtIdProof) values('"+newVisitorData.nameOfVisitor +"','"+newVisitorData.contactNo+"','image','"+newVisitorData.govtIdProof+"')");
-            List<Visitors> visitorEntry= entity.Visitors.FromSql("select * from Visitors where NameOfVisitor = @searchInput", new SqlParameter("@searchInput",newVisitorData.nameOfVisitor)).ToList<Visitors>();
-            List<Employees> empEntry = entity.Employees.FromSql("select * from Employees where EmployeeName = @searchInput", new SqlParameter("@searchInput", newVisitorData.whomToMeet)).ToList<Employees>();
-            entity.Database.ExecuteSqlCommand("insert into VisitorsLogs(ComingFrom,WhomToMeet,EmployeeId,DateOfVisit,TimeIn,TimeOut,VisitorId,GuardId,PurposeOfVisit) values('" + newVisitorData.comingFrom + "','" + newVisitorData.whomToMeet + "','" + empEntry[0].EmployeeId+"','"+DateTime.Today+"','" + DateTime.Now+"','22:30:00.0000000','" + visitorEntry[0].VisitorId+"','"+ newVisitorData.guardId + "','"+newVisitorData.purposeOfVisit+"')");
+            AddNewVisitorLog(newVisitorData);
+        }
+        public void AddNewVisitorLog(NewVisitorFormData VisitorData)
+        {
+            var entity = new VisitorsDatabaseContext();
+            List<Visitors> visitorEntry = entity.Visitors.FromSql("select * from Visitors where NameOfVisitor = @searchInput", new SqlParameter("@searchInput", VisitorData.nameOfVisitor)).ToList<Visitors>();
+            List<Employees> empEntry = entity.Employees.FromSql("select * from Employees where EmployeeName = @searchInput", new SqlParameter("@searchInput", VisitorData.whomToMeet)).ToList<Employees>();
+            entity.Database.ExecuteSqlCommand("insert into VisitorsLogs(ComingFrom,WhomToMeet,EmployeeId,DateOfVisit,TimeIn,TimeOut,VisitorId,GuardId,PurposeOfVisit) values('" + VisitorData.comingFrom + "','" + VisitorData.whomToMeet + "','" + empEntry[0].EmployeeId + "','" + DateTime.Today + "','" + DateTime.Now + "','22:30:00.0000000','" + visitorEntry[0].VisitorId + "','" + VisitorData.guardId + "','" + VisitorData.purposeOfVisit + "')");
         }
         public List<MatchingSubstring> AllMatchingEmployeeNames(string userInput)
         {
@@ -273,6 +279,30 @@ namespace VisitorService
                 MatchingResults.Add(name);
             }
             return MatchingResults;
+        }
+        public int SendAndReturnOtp(string ContactNo)
+        {
+            try
+            {
+                SMSGeneration smsGeneration = new SMSGeneration();
+                int otp;
+                return otp = smsGeneration.SMS(Convert.ToInt64(ContactNo));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Could not update password. Please try again" + ex.StackTrace);
+            }
+        }
+        public string GetVisitorNameById(int Id)
+        {
+            var entity = new VisitorsDatabaseContext();
+            List<Visitors> Visitor = entity.Visitors.FromSql("select * from Visitors where VisitorId = @visitorId", new SqlParameter("@visitorId", Id)).ToList<Visitors>();
+            return Visitor[0].NameOfVisitor;
+        }
+        public void SaveVisitorExitTime(int Id)
+        {
+            var entity = new VisitorsDatabaseContext();
+            entity.Database.ExecuteSqlCommand("Update VisitorsLogs SET TimeOut = @CurrentTime where VisitorId = @visitorId", new SqlParameter("@CurrentTime", DateTime.Now), new SqlParameter("@visitorId", Id));
         }
         public void ClearList()
         {

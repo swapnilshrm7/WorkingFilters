@@ -34,9 +34,9 @@ namespace DALCore.Controllers
         {
             return guard.GetGuardLogByDateAndTime(UserInput.fromDate, UserInput.toDate, UserInput.fromTime, UserInput.toTime);
         }
-        [HttpPut]
+        [HttpGet]
         [Route("api/[controller]/AllGuards")]
-        public List<Guard> GetAllUniqueGuards(SearchFilter searchInput)
+        public List<Guard> GetAllUniqueGuards()
         {
             return guard.GetUniqueVisitors();
         }
@@ -45,6 +45,18 @@ namespace DALCore.Controllers
         public List<Guard> GetGuardByName(SearchFilter searchInput)
         {
             return guard.GetUniqueVisitorsByName(searchInput.UserInput);
+        }
+        [HttpPost]
+        [Route("api/[controller]/AddGuard")]
+        public void AddNewGuard(Guard NewGuard)
+        {
+            guard.AddGuard(NewGuard);
+        }
+        [HttpPut]
+        [Route("api/[controller]/RemoveGuard")]
+        public void RemoveGuard(SearchFilter searchInput)
+        {
+            guard.DeleteGuard(searchInput.UserInput);
         }
     }
 }

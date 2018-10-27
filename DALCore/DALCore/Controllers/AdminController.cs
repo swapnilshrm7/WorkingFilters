@@ -11,5 +11,6 @@ namespace DALCore.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
+
     }
 }

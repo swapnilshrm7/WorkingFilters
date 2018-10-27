@@ -9,6 +9,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Amazon.S3" Version="0.11.5" />
+    <PackageReference Include="AWSSDK.Core" Version="3.3.28.1" />
+    <PackageReference Include="AWSSDK.Rekognition" Version="3.3.11.7" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.26.1" />
+    <PackageReference Include="FirebaseAdmin" Version="1.0.0" />
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.2" />
+    <PackageReference Include="FirebaseTokenGenerator" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
@@ -18,17 +26,29 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="RequestStrap" Version="0.2.0" />
     <PackageReference Include="System.Data.Entity.Repository" Version="2.0.0.1" />
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="4.5.0" />
     <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
+    <PackageReference Include="System.Web.Http.Common" Version="4.0.20126.16343" />
+    <PackageReference Include="System.Web.Providers" Version="1.2.0" />
+    <PackageReference Include="System.Web.Providers.Core" Version="1.1.0" />
+    <PackageReference Include="SystemWebPackage" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AdminService\UserService.csproj" />
     <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj" />
+    <ProjectReference Include="..\EmployeeService\EmployeeService.csproj" />
     <ProjectReference Include="..\GuardService\GuardService.csproj" />
     <ProjectReference Include="..\VisitorService\VisitorService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

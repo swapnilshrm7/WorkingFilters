@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Amazon.S3" Version="0.11.5" />
+    <PackageReference Include="AWSSDK.Rekognition" Version="3.3.11.7" />
+    <PackageReference Include="Firebase.Auth.Rest" Version="1.0.5" />
+    <PackageReference Include="Firebase.js" Version="2.1.2" />
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.2" />
+    <PackageReference Include="Plugin.FirebaseStorage" Version="1.0.0" />
+    <PackageReference Include="System.Web.Http.Common" Version="4.0.20126.16343" />
+  </ItemGroup>
+
+</Project>

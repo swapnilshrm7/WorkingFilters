@@ -6,7 +6,19 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Web;
+using System.Web.Http;
+using Firebase;
+using Firebase.Storage;
+using Amazon.S3;
+using Amazon.S3.Model;
+using System.Security.AccessControl;
+using Amazon.Rekognition;
+using Amazon.Rekognition.Model;
+using Microsoft.Net;
 namespace UserService
 {
     public class ForgotPasswordManager : IForgotPassword
@@ -70,5 +82,47 @@ namespace UserService
                 throw new Exception("Could not update password. Please try again" + ex.StackTrace);
             }
         }
+        /*async System.Threading.Tasks.Task UploadToS3Async()
+        {
+            var task = await new FirebaseStorage("taviscavisitor.appspot.com").Child("Visitors/visitor.jpg").GetDownloadUrlAsync();
+            string filePathToFirebaseStorage = task.ToString();
+            string filePathToLocalServer = HttpContext.Current.Server.MapPath("Visitors");
+            using (var client = new WebClient())
+            {
+                if (!Directory.Exists(filePathToLocalServer))
+                {
+                    Directory.CreateDirectory(filePathToLocalServer);
+                }
+                client.DownloadFile(filePathToFirebaseStorage, filePathToLocalServer + "/" + "visitor.jpg");
+            }
+
+            AmazonS3Client amazonS3Client = new AmazonS3Client();
+            Amazon.S3.Model.PutObjectRequest putObjectRequest = new Amazon.S3.Model.PutObjectRequest
+            {
+                BucketName = "visitors-bucket",
+                Key = "new_visitor.jpg",
+                FilePath = HttpContext.Current.Server.MapPath("Visitors") + "/" + "visitor.jpg"
+            };
+            amazonS3Client.PutObjectAsync(putObjectRequest);
+        }
+
+        void AddANewFace()
+        {
+            AmazonRekognitionClient amazonRekognitionClient = new AmazonRekognitionClient();
+            var response = amazonRekognitionClient.IndexFacesAsync(new IndexFacesRequest
+            {
+                CollectionId = "sample",
+                ExternalImageId = new Guid().ToString(),
+                Image = new Image
+                {
+                    S3Object = new Amazon.Rekognition.Model.S3Object
+                    {
+                        Bucket = "visitors-bucket",
+                        Name = "new_visitor.jpg"
+                    }
+                }
+            });
+
+        }*/
     }
 }

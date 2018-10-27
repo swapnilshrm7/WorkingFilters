@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Core.Contracts;
 using VisitorService;
-using Core.Contracts.Models;
+using Core.Contracts.Models; 
 
 namespace DALCore.Controllers
 {
@@ -21,7 +21,8 @@ namespace DALCore.Controllers
         {
             visitor = _visitor;
         } 
-        [HttpGet]
+
+        [HttpGet] 
         [Route("api/[controller]/Log")]
         public List<VisitorsData> GetVisitorsFromLog()
         {
@@ -80,6 +81,26 @@ namespace DALCore.Controllers
         public List<MatchingSubstring> GetMatchingEmployeesNames([FromBody]SearchFilter Name)
         {
             return visitor.AllMatchingEmployeeNames(Name.UserInput);
+        }
+
+        [HttpPut]
+        [Route("api/[controller]/GetOtp")]
+        public int SendOtpToUser([FromBody]SearchFilter ContactNo)
+        {
+            return visitor.SendAndReturnOtp(ContactNo.UserInput);
+        }
+        [HttpPut]
+        [Route("api/[controller]/GetVisitorNameById")]
+        public string VisitorNameById([FromBody]UserId Id)
+        {
+            return visitor.GetVisitorNameById(Id.userId);
+        }
+        [HttpPut]
+        [Route("api/[controller]/SaveExitTime")]
+        public string SavingExitTime([FromBody]UserId Id)
+        {
+            visitor.SaveVisitorExitTime(Id.userId);
+            return "Exit time recorded!";
         }
     }
 }

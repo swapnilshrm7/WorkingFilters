@@ -19,6 +19,9 @@ namespace VisitorService
         List<Visitors> GetUniqueVisitorsByName(string searchInput);
         void AddNewVisitor(NewVisitorFormData newVisitorData);
         List<MatchingSubstring> AllMatchingEmployeeNames(string userInput);
+        int SendAndReturnOtp(string ContactNo);
+        string GetVisitorNameById(int Id);
+        void SaveVisitorExitTime(int Id);
     }
 
 }

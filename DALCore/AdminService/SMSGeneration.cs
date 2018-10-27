@@ -22,7 +22,7 @@ namespace UserService
                 var message = MessageResource.Create(
                     to,
                     from: new PhoneNumber("+13158832734"), //  From number, must be an SMS-enabled Twilio number ( This will send sms from ur "To" numbers ). 
-                    body: $"Hello user!! Your one time password is {otp}");
+                    body: $"Hello tavisca visitor!! Your one time password is {otp}");
                 return otp;
             }
             catch (Exception ex)

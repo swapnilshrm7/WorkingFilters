@@ -21,3 +21,5 @@ C:\Users\swapnil\source\repos\DALCore\DALCore\obj\Debug\netcoreapp2.1\DALCore.Ra
 C:\Users\swapnil\source\repos\DALCore\DALCore\obj\Debug\netcoreapp2.1\DALCore.csproj.CopyComplete
 C:\Users\swapnil\source\repos\DALCore\DALCore\obj\Debug\netcoreapp2.1\DALCore.dll
 C:\Users\swapnil\source\repos\DALCore\DALCore\obj\Debug\netcoreapp2.1\DALCore.pdb
+C:\Users\swapnil\source\repos\DALCore\DALCore\bin\Debug\netcoreapp2.1\EmployeeService.dll
+C:\Users\swapnil\source\repos\DALCore\DALCore\bin\Debug\netcoreapp2.1\EmployeeService.pdb

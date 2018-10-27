@@ -223,6 +223,31 @@ namespace GuardService
                 throw new Exception("Could not get Visitors. Please try again" + ex.StackTrace);
             }
         }
+        public void DeleteGuard(string GuardId)
+        {
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                entity.Database.ExecuteSqlCommand("DELETE FROM Guard WHERE GuardId=@GuardId", new SqlParameter("@GuardId", GuardId));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Could not delete Guard. Please try again" + ex.StackTrace);
+            }
+        }
+        public void AddGuard(Guard NewGuard)
+        {
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                entity.Database.ExecuteSqlCommand("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress, EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)values(@GuardId,@GuardName,@EmailId,@Location,@GuardStatus,@Gender,@DateOfBirth,@LocalAddress,@PermanentAddress,@EmergencyContactPerson,@EmergencyContactNumber,@PrimaryContactNumber,@SecondaryContactNumber,@DateOfJoining,@DateOfResignation,@Remark,@BloodGroup,@MedicalSpecification)", new SqlParameter("@GuardId", NewGuard.GuardId), new SqlParameter("@GuardName", NewGuard.GuardName), new SqlParameter("@EmailId", NewGuard.EmailId), new SqlParameter("@GuardStatus", NewGuard.GuardStatus), new SqlParameter("@Gender", NewGuard.Gender), new SqlParameter("@DateOfBirth", NewGuard.DateOfBirth), new SqlParameter("@LocalAddress", NewGuard.LocalAddress), new SqlParameter("@PermanentAddress", NewGuard.PermanentAddress), new SqlParameter("@EmergencyContactPerson", NewGuard.EmergencyContactPerson), new SqlParameter("@EmergencyContactNumber", NewGuard.EmergencyContactNumber), new SqlParameter("@PrimaryContactNumber", NewGuard.PrimaryContactNumber), new SqlParameter("@SecondaryContactNumber", NewGuard.SecondaryContactNumber), new SqlParameter("@DateOfJoining", NewGuard.DateOfJoining), new SqlParameter("@DateOfResignation", NewGuard.DateOfResignation), new SqlParameter("@Remark", NewGuard.Remark), new SqlParameter("@BloodGroup", NewGuard.BloodGroup), new SqlParameter("@MedicalSpecification", NewGuard.MedicalSpecification));
+                //entity.Guard.FromSql("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress, EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)values(NewGuard.GuardId, NewGuard.GuardName, NewGuard.EmailId, NewGuard.GuardStatus, NewGuard.Gender, NewGuard.DateOfBirth, NewGuard.LocalAddress, NewGuard.PermanentAddress, NewGuard.EmergencyContactPerson, NewGuard.EmergencyContactNumber, NewGuard.PrimaryContactNumber, NewGuard.SecondaryContactNumber, NewGuard.DateOfJoining, NewGuard.DateOfResignation, NewGuard.Remark, NewGuard.BloodGroup, NewGuard.MedicalSpecification");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Could not Add Guard. Please try again" + ex.StackTrace);
+            }
+        }
         public void ClearList()
         {
             allLogs.Clear();

@@ -14,6 +14,7 @@
     <Compile Include="Models\DateAndName.cs" />
     <Compile Include="Models\DateAndTime.cs" />
     <Compile Include="Models\Employees.cs" />
+    <Compile Include="Models\EmployeesLog.cs" />
     <Compile Include="Models\Guard.cs" />
     <Compile Include="Models\GuardData.cs" />
     <Compile Include="Models\GuardLogs.cs" />
@@ -24,6 +25,7 @@
     <Compile Include="Models\NewVisitorFormData.cs" />
     <Compile Include="Models\ResetPassword.cs" />
     <Compile Include="Models\SearchFilter.cs" />
+    <Compile Include="Models\UserId.cs" />
     <Compile Include="Models\Visitors.cs" />
     <Compile Include="Models\VisitorsData.cs" />
     <Compile Include="Models\VisitorsDatabaseContext.cs" />

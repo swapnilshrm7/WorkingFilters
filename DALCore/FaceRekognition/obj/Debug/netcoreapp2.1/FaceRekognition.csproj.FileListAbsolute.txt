@@ -1,0 +1,8 @@
+C:\Users\swapnil\source\repos\DALCore\FaceRekognition\bin\Debug\netcoreapp2.1\FaceRekognition.deps.json
+C:\Users\swapnil\source\repos\DALCore\FaceRekognition\bin\Debug\netcoreapp2.1\FaceRekognition.runtimeconfig.json
+C:\Users\swapnil\source\repos\DALCore\FaceRekognition\bin\Debug\netcoreapp2.1\FaceRekognition.runtimeconfig.dev.json
+C:\Users\swapnil\source\repos\DALCore\FaceRekognition\bin\Debug\netcoreapp2.1\FaceRekognition.dll
+C:\Users\swapnil\source\repos\DALCore\FaceRekognition\obj\Debug\netcoreapp2.1\FaceRekognition.csprojAssemblyReference.cache
+C:\Users\swapnil\source\repos\DALCore\FaceRekognition\obj\Debug\netcoreapp2.1\FaceRekognition.csproj.CoreCompileInputs.cache
+C:\Users\swapnil\source\repos\DALCore\FaceRekognition\obj\Debug\netcoreapp2.1\FaceRekognition.AssemblyInfoInputs.cache
+C:\Users\swapnil\source\repos\DALCore\FaceRekognition\obj\Debug\netcoreapp2.1\FaceRekognition.AssemblyInfo.cs

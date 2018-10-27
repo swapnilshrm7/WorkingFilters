@@ -9,7 +9,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Amazon.S3" Version="0.11.5" />
+    <PackageReference Include="AWSSDK.Rekognition" Version="3.3.11.7" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.26.1" />
+    <PackageReference Include="AWSSDKCPP-Rekognition" Version="1.6.20160627.25" />
+    <PackageReference Include="Firebase.js" Version="2.1.2" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="3.1.0" />
+    <PackageReference Include="FirebaseDatabase.net" Version="3.3.3" />
+    <PackageReference Include="FirebaseNetAdmin" Version="1.0.0" />
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.2" />
     <PackageReference Include="jQuery.Validation.Unobtrusive" Version="2.0.20710" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.6" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <PackageReference Include="Microsoft.Net.WebSockets.Server" Version="0.1.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.7.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="4.5.0" />
     <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
@@ -18,6 +32,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.http.abstractions\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

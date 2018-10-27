@@ -4,9 +4,9 @@ C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserS
 C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.AssemblyInfo.cs
 C:\Users\swapnil\source\repos\DALCore\AdminService\bin\Debug\netcoreapp2.1\UserService.deps.json
 C:\Users\swapnil\source\repos\DALCore\AdminService\bin\Debug\netcoreapp2.1\UserService.dll
-C:\Users\swapnil\source\repos\DALCore\AdminService\bin\Debug\netcoreapp2.1\UserService.pdb
 C:\Users\swapnil\source\repos\DALCore\AdminService\bin\Debug\netcoreapp2.1\Core.Contracts.dll
 C:\Users\swapnil\source\repos\DALCore\AdminService\bin\Debug\netcoreapp2.1\Core.Contracts.pdb
 C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.csproj.CopyComplete
+C:\Users\swapnil\source\repos\DALCore\AdminService\bin\Debug\netcoreapp2.1\UserService.pdb
 C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.dll
 C:\Users\swapnil\source\repos\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.pdb
