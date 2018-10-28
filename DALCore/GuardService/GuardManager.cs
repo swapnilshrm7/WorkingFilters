@@ -36,7 +36,7 @@ namespace GuardService
             {
                 var entity = new VisitorsDatabaseContext();
                 Guard guardData = entity.Guard.Find(guard.GuardId);
-                GuardData guardEntry = new GuardData(); 
+                GuardData guardEntry = new GuardData();
                 guardEntry.GuardId = guard.GuardId;
                 guardEntry.SerialNumber = guard.SerialNumber;
                 guardEntry.GuardPassword = guard.GuardPassword;
@@ -137,8 +137,8 @@ namespace GuardService
                     fromTime = "00:00:00";
                     toTime = "23:59:59";
                 }
-                var entity = new VisitorsDatabaseContext();  
-                List<GuardLogs> visitorLogsList = 
+                var entity = new VisitorsDatabaseContext();
+                List<GuardLogs> visitorLogsList =
                     entity.GuardLogs.FromSql("select * from GuardLogs where LoginDate between @fromDate And @toDate and LogoutDate between @fromDate And @toDate and LoginTime >= @fromTime and LogoutTime <= @toTime", new SqlParameter("@fromDate", fromDate), new SqlParameter("@toDate", toDate), new SqlParameter("@fromTime", fromTime), new SqlParameter("@toTime", toTime)).ToList<GuardLogs>();
 
                 foreach (var entry in visitorLogsList)
@@ -235,12 +235,27 @@ namespace GuardService
                 throw new Exception("Could not delete Guard. Please try again" + ex.StackTrace);
             }
         }
-        public void AddGuard(Guard NewGuard)
+        public bool AddGuard(Guard NewGuard)
         {
             try
             {
                 var entity = new VisitorsDatabaseContext();
-                entity.Database.ExecuteSqlCommand("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress, EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)values(@GuardId,@GuardName,@EmailId,@Location,@GuardStatus,@Gender,@DateOfBirth,@LocalAddress,@PermanentAddress,@EmergencyContactPerson,@EmergencyContactNumber,@PrimaryContactNumber,@SecondaryContactNumber,@DateOfJoining,@DateOfResignation,@Remark,@BloodGroup,@MedicalSpecification)", new SqlParameter("@GuardId", NewGuard.GuardId), new SqlParameter("@GuardName", NewGuard.GuardName), new SqlParameter("@EmailId", NewGuard.EmailId), new SqlParameter("@GuardStatus", NewGuard.GuardStatus), new SqlParameter("@Gender", NewGuard.Gender), new SqlParameter("@DateOfBirth", NewGuard.DateOfBirth), new SqlParameter("@LocalAddress", NewGuard.LocalAddress), new SqlParameter("@PermanentAddress", NewGuard.PermanentAddress), new SqlParameter("@EmergencyContactPerson", NewGuard.EmergencyContactPerson), new SqlParameter("@EmergencyContactNumber", NewGuard.EmergencyContactNumber), new SqlParameter("@PrimaryContactNumber", NewGuard.PrimaryContactNumber), new SqlParameter("@SecondaryContactNumber", NewGuard.SecondaryContactNumber), new SqlParameter("@DateOfJoining", NewGuard.DateOfJoining), new SqlParameter("@DateOfResignation", NewGuard.DateOfResignation), new SqlParameter("@Remark", NewGuard.Remark), new SqlParameter("@BloodGroup", NewGuard.BloodGroup), new SqlParameter("@MedicalSpecification", NewGuard.MedicalSpecification));
+                if (NewGuard.SecondaryContactNumber == null)
+                    NewGuard.SecondaryContactNumber = "";
+                if (NewGuard.MedicalSpecification == null)
+                    NewGuard.MedicalSpecification = "";
+                if (NewGuard.Remark == null)
+                    NewGuard.Remark = "";
+                var query = entity.Database.ExecuteSqlCommand("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress," +
+                    " EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)" +
+                    "values(@GuardId, @GuardName, @EmailId, @GuardStatus, @Gender, @DateOfBirth, @LocalAddress, @PermanentAddress," +
+                    "@EmergencyContactPerson, @EmergencyContactNumber, @PrimaryContactNumber, @SecondaryContactNumber, @DateOfJoining, @DateOfResignation, @Remark, @BloodGroup, @MedicalSpecification)",
+                    new SqlParameter("@GuardId", NewGuard.GuardId), new SqlParameter("@GuardName", NewGuard.GuardName), new SqlParameter("@EmailId", NewGuard.EmailId), new SqlParameter("@GuardStatus", "Active"),
+                    new SqlParameter("@Gender", NewGuard.Gender), new SqlParameter("@DateOfBirth", NewGuard.DateOfBirth), new SqlParameter("@LocalAddress", NewGuard.LocalAddress), new SqlParameter("@PermanentAddress",
+                    NewGuard.PermanentAddress), new SqlParameter("@EmergencyContactPerson", NewGuard.EmergencyContactPerson), new SqlParameter("@EmergencyContactNumber", NewGuard.EmergencyContactNumber),
+                    new SqlParameter("@PrimaryContactNumber", NewGuard.PrimaryContactNumber), new SqlParameter("@SecondaryContactNumber", NewGuard.SecondaryContactNumber), new SqlParameter("@DateOfJoining", NewGuard.DateOfJoining),
+                    new SqlParameter("@DateOfResignation", ""), new SqlParameter("@Remark", NewGuard.Remark), new SqlParameter("@BloodGroup", NewGuard.BloodGroup), new SqlParameter("@MedicalSpecification", NewGuard.MedicalSpecification));
+                return true;
                 //entity.Guard.FromSql("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress, EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)values(NewGuard.GuardId, NewGuard.GuardName, NewGuard.EmailId, NewGuard.GuardStatus, NewGuard.Gender, NewGuard.DateOfBirth, NewGuard.LocalAddress, NewGuard.PermanentAddress, NewGuard.EmergencyContactPerson, NewGuard.EmergencyContactNumber, NewGuard.PrimaryContactNumber, NewGuard.SecondaryContactNumber, NewGuard.DateOfJoining, NewGuard.DateOfResignation, NewGuard.Remark, NewGuard.BloodGroup, NewGuard.MedicalSpecification");
             }
             catch (Exception ex)

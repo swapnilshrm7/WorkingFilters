@@ -204,9 +204,9 @@ namespace DALCore.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LoginTime).HasColumnType("datetime");
+                entity.Property(e => e.LoginDate).HasColumnType("date");
 
-                entity.Property(e => e.LogoutTime).HasColumnType("datetime");
+                entity.Property(e => e.LogoutDate).HasColumnType("date");
             });
 
             modelBuilder.Entity<LoginCredentials>(entity =>
@@ -228,12 +228,13 @@ namespace DALCore.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Otp)
-                    .IsRequired();
-
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SavingTime)
+                    .HasMaxLength(32)
                     .IsUnicode(false);
 
                 entity.Property(e => e.SerialNumber).ValueGeneratedOnAdd();

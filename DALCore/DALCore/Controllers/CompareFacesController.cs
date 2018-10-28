@@ -1,4 +1,4 @@
-﻿using Amazon.Rekognition;
+﻿/*using Amazon.Rekognition;
 using Amazon.Rekognition.Model;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using Firebase.Storage;
 using Amazon.S3;
 using Amazon.S3.Model;
 using System.Security.AccessControl;
-using UserService;
+using UserService;*/
 
 /*[HttpGet]
 [Route("api/Guard")]

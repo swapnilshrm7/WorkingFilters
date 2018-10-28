@@ -13,8 +13,8 @@
   <ItemGroup>
     <Compile Include="Models\DateAndName.cs" />
     <Compile Include="Models\DateAndTime.cs" />
+    <Compile Include="Models\EmployeeLogs.cs" />
     <Compile Include="Models\Employees.cs" />
-    <Compile Include="Models\EmployeesLog.cs" />
     <Compile Include="Models\Guard.cs" />
     <Compile Include="Models\GuardData.cs" />
     <Compile Include="Models\GuardLogs.cs" />

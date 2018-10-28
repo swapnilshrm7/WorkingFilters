@@ -37,4 +37,4 @@ namespace DALCore.Controllers
             return "Password changed successfully";
         }
     }
-}
+} 

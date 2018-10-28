@@ -1,4 +1,5 @@
-﻿using DALCore.Models;
+﻿using Core.Contracts.Models;
+using DALCore.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,36 @@ namespace EmployeeService
             var entity = new VisitorsDatabaseContext();
             List<Employees> Employee = entity.Employees.FromSql("select * from Employees where EmployeeId = @employeeId", new SqlParameter("@employeeId", UserId)).ToList<Employees>();
             return Employee[0].EmployeeName;
+        }
+        public List<EmployeeLogs> GetAllEmployeesLogs()
+        {
+            var entity = new VisitorsDatabaseContext();
+            List<EmployeeLogs> AllEmployeeLogs = entity.EmployeeLogs.FromSql("select * from EmployeeLogs").ToList<EmployeeLogs>();
+            return AllEmployeeLogs;
+        }
+        public void AddEmployeeLog(string EmployeeId)
+        {
+            var entity = new VisitorsDatabaseContext();
+            string EmployeeName = GetEmployeeNameById(EmployeeId);
+            entity.Database.ExecuteSqlCommand("Insert into EmployeeLogs(EmployeeId,EmployeeName,DateOfVisit,TimeOfEntry) values (@EmployeeId,@EmployeeName,@DateOfVisit,@TimeOfEntry)", new SqlParameter("@EmployeeId", EmployeeId), new SqlParameter("@EmployeeName", EmployeeName), new SqlParameter("@DateOfVisit", DateTime.Today), new SqlParameter("@TimeOfEntry", DateTime.Now));
+        }
+        public List<EmployeeLogs> GetEmployeeLogByName(string EmployeeName)
+        {
+            var entity = new VisitorsDatabaseContext();
+            List<EmployeeLogs> AllLogsByName = entity.EmployeeLogs.FromSql("select * from EmployeeLogs where EmployeeName = @employeeName", new SqlParameter("@employeeName", EmployeeName)).ToList<EmployeeLogs>();
+            return AllLogsByName;
+        }
+        public List<EmployeeLogs> GetEmployeeLogsByDate(string fromDate, string toDate, string fromTime, string toTime)
+        {
+            var entity = new VisitorsDatabaseContext();
+            List<EmployeeLogs> AllLogsBetweenDateAndTime = entity.EmployeeLogs.FromSql("select * from EmployeeLogs where DateOfVisit between @fromDate And @toDate and TimeOfEntry >= @fromTime and TimeOfEntry <= @toTime", new SqlParameter("@fromDate", fromDate), new SqlParameter("@toDate", toDate), new SqlParameter("@fromTime", fromTime), new SqlParameter("@toTime", toTime)).ToList<EmployeeLogs>();
+            return AllLogsBetweenDateAndTime;
+        }
+        public List<EmployeeLogs> GetEmployeeLogsByNameAndDate(string nameOfEmployee, string fromDate, string toDate, string fromTime, string toTime)
+        {
+            var entity = new VisitorsDatabaseContext();
+            List<EmployeeLogs> AllLogsByNameBetweenDateAndTime = entity.EmployeeLogs.FromSql("select * from EmployeeLogs where EmployeeName = @nameOfEmployee and DateOfVisit between @fromDate And @toDate and TimeOfEntry >= @fromTime and TimeOfEntry <= @toTime",new SqlParameter("@nameOfEmployee",nameOfEmployee), new SqlParameter("@fromDate", fromDate), new SqlParameter("@toDate", toDate), new SqlParameter("@fromTime", fromTime), new SqlParameter("@toTime", toTime)).ToList<EmployeeLogs>();
+            return AllLogsByNameBetweenDateAndTime;
         }
     }
 }

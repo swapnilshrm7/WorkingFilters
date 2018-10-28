@@ -48,9 +48,11 @@ namespace DALCore.Controllers
         }
         [HttpPost]
         [Route("api/[controller]/AddGuard")]
-        public void AddNewGuard(Guard NewGuard)
+        public bool AddNewGuard(Guard NewGuard)
         {
-            guard.AddGuard(NewGuard);
+            if(guard.AddGuard(NewGuard))
+                return true;
+            return false;
         }
         [HttpPut]
         [Route("api/[controller]/RemoveGuard")]

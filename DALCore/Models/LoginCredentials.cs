@@ -11,5 +11,6 @@ namespace DALCore.Models
         public string Category { get; set; }
         public string ContactNo { get; set; }
         public int Otp { get; set; }
+        public string SavingTime { get; set; }
     }
 }

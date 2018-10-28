@@ -18,7 +18,7 @@ namespace DALCore.Models
         public string PrimaryContactNumber { get; set; }
         public string SecondaryContactNumber { get; set; }
         public DateTime DateOfJoining { get; set; }
-        public DateTime? DateOfResignation { get; set; }
+        public DateTime DateOfResignation { get; set; }
         public string Remark { get; set; }
         public string BloodGroup { get; set; }
         public string MedicalSpecification { get; set; }

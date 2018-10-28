@@ -14,6 +14,6 @@ namespace GuardService
         List<Guard> GetUniqueVisitors();
         List<Guard> GetUniqueVisitorsByName(string searchInput);
         void DeleteGuard(string GuardId);
-        void AddGuard(Guard NewGuard);
+        bool AddGuard(Guard NewGuard);
     }
 }
