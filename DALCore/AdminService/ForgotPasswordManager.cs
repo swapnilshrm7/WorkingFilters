@@ -19,6 +19,7 @@ using System.Security.AccessControl;
 using Amazon.Rekognition;
 using Amazon.Rekognition.Model;
 using Microsoft.Net;
+using SQLDatabase;
 namespace UserService
 {
     public class ForgotPasswordManager : IForgotPassword
@@ -28,10 +29,11 @@ namespace UserService
             try
             {
                 var entity = new VisitorsDatabaseContext();
-                List<LoginCredentials> visitorCredentials = entity.LoginCredentials.FromSql("select * from LoginCredentials where UserId  = @Id", new SqlParameter("@Id", userId)).ToList<LoginCredentials>();
+                UserDatabase sqlDB = new UserDatabase();
+                LoginCredentials loginCredentials = sqlDB.GetLoginCredentialsByUserId(userId);
                 SMSGeneration smsGeneration = new SMSGeneration();
-                int otp = smsGeneration.SMS(Convert.ToInt64(visitorCredentials[0].ContactNo));
-                entity.Database.ExecuteSqlCommand("UPDATE LoginCredentials SET Otp = @expectedOtp WHERE UserId = @Id;", new SqlParameter("@expectedOtp", otp), new SqlParameter("@Id", userId));
+                int otp = smsGeneration.SMS(Convert.ToInt64(loginCredentials.ContactNo));
+                sqlDB.UpdateOTP(userId, otp);
             }
             catch (Exception ex)
             {
@@ -43,8 +45,9 @@ namespace UserService
             try
             {
                 var entity = new VisitorsDatabaseContext();
-                List<LoginCredentials> response = entity.LoginCredentials.FromSql("select * from LoginCredentials where UserId  = @Id and Otp  = @otpEntered", new SqlParameter("@Id", userId), new SqlParameter("@otpEntered", otpEnteredByUser)).ToList<LoginCredentials>();
-                if(response.Count==1)
+                UserDatabase sqlDB = new UserDatabase();
+                LoginCredentials response = sqlDB.GetLoginCredentialsByUserId(userId);
+                if (response.Otp==otpEnteredByUser)
                     return true;
                 return false;
             }
@@ -74,8 +77,10 @@ namespace UserService
                     }
                     hash = sb.ToString();
                 }
-                var entity = new VisitorsDatabaseContext();
-                entity.Database.ExecuteSqlCommand("UPDATE LoginCredentials SET Password  = @newPassword , SavingTime =@savingTime WHERE UserId = @Id", new SqlParameter("@newPassword", hash), new SqlParameter("@savingTime", time), new SqlParameter("@Id", userId));
+                //var entity = new VisitorsDatabaseContext();
+                //entity.Database.ExecuteSqlCommand("UPDATE LoginCredentials SET Password  = @newPassword , SavingTime =@savingTime WHERE UserId = @Id", new SqlParameter("@newPassword", hash), new SqlParameter("@savingTime", time), new SqlParameter("@Id", userId));
+                UserDatabase sqlDB = new UserDatabase();
+                sqlDB.UpdatePassword(userId, hash, time);
             }
             catch (Exception ex)
             {

@@ -10,3 +10,15 @@ C:\Users\swapnil\source\repos\DALCore\EmployeeService\bin\Debug\netcoreapp2.1\Co
 C:\Users\swapnil\source\repos\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.csproj.CopyComplete
 C:\Users\swapnil\source\repos\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.dll
 C:\Users\swapnil\source\repos\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.pdb
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\bin\Debug\netcoreapp2.1\EmployeeService.deps.json
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\bin\Debug\netcoreapp2.1\EmployeeService.dll
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\bin\Debug\netcoreapp2.1\EmployeeService.pdb
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\bin\Debug\netcoreapp2.1\Core.Contracts.dll
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\bin\Debug\netcoreapp2.1\Core.Contracts.pdb
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.csprojAssemblyReference.cache
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.csproj.CoreCompileInputs.cache
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.AssemblyInfoInputs.cache
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.AssemblyInfo.cs
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.csproj.CopyComplete
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.dll
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\EmployeeService\obj\Debug\netcoreapp2.1\EmployeeService.pdb

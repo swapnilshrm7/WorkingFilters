@@ -6,24 +6,24 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-
+using SQLDatabase;
 namespace UserService
 {
     public class UserLoginManager : IUserAuthentication
     { 
-        public bool UserValidation(string UserId, string Password)
+        public bool UserValidation(string userId, string password)
         {
             try
             {
                 string salt = "tavisca";
                 string hash = "";
-                var entity = new VisitorsDatabaseContext();
-                List<LoginCredentials> credentials = entity.LoginCredentials.FromSql("select * from LoginCredentials where UserId = @Id", new SqlParameter("@Id", UserId)).ToList<LoginCredentials>();
-                Password += salt;
-                Password += credentials[0].SavingTime;
+                UserDatabase sqlDB = new UserDatabase();
+                LoginCredentials credentials = sqlDB.GetLoginCredentialsByUserId(userId);
+                password += salt;
+                password += credentials.SavingTime;
                 using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
                 {
-                    byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(Password);
+                    byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(password);
                     byte[] hashBytes = md5.ComputeHash(inputBytes);
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < hashBytes.Length; i++)
@@ -32,10 +32,10 @@ namespace UserService
                     }
                     hash = sb.ToString();
                 }
-                if (credentials[0].Password == hash)
+                if (credentials.Password == hash)
                     return true;
                 else
-                    return false;
+                    return false; 
             }
             catch (Exception ex)
             {

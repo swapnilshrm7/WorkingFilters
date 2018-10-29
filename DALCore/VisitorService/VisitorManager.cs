@@ -7,6 +7,7 @@ using Core.Contracts.Models;
 using DALCore.Models;
 using Microsoft.EntityFrameworkCore;
 using UserService;
+using SQLDatabase;
 
 namespace VisitorService
 {
@@ -19,8 +20,8 @@ namespace VisitorService
             try
             {
                 ClearList();
-                var entity = new VisitorsDatabaseContext();
-                List<VisitorsLogs> visitorLogsList = entity.VisitorsLogs.FromSql("select * from VisitorsLogs").ToList<VisitorsLogs>();
+                VisitorDatabase visitorDatabase = new VisitorDatabase();
+                List<VisitorsLogs> visitorLogsList = visitorDatabase.GetAllVisitorLogs();
                 foreach (var entry in visitorLogsList)
                 {
                     GetVisitorData(entry);
@@ -62,8 +63,10 @@ namespace VisitorService
             try
             {
                 ClearList();
-                var entity = new VisitorsDatabaseContext();
-                List<Visitors> visitorLogsList = entity.Visitors.FromSql("select * from Visitors where NameOfVisitor = @searchInput", new SqlParameter("@searchInput", searchInput)).ToList<Visitors>();
+                //var entity = new VisitorsDatabaseContext();
+                //List<Visitors> visitorLogsList = entity.Visitors.FromSql("select * from Visitors where NameOfVisitor = @searchInput", new SqlParameter("@searchInput", searchInput)).ToList<Visitors>();
+                VisitorDatabase visitorDatabase = new VisitorDatabase();
+                List<Visitors> visitorLogsList = visitorDatabase.GetVisitorsByName(searchInput);
                 foreach (var entry in visitorLogsList)
                 {
                     GetVisitorDataByName(entry);
@@ -79,8 +82,10 @@ namespace VisitorService
         {
             try
             {
-                var entity = new VisitorsDatabaseContext();
-                List<VisitorsLogs> visitorData = entity.VisitorsLogs.FromSql("select * from VisitorsLogs where VisitorId = @searchInput", new SqlParameter("@searchInput", visitor.VisitorId)).ToList<VisitorsLogs>();
+                //var entity = new VisitorsDatabaseContext();
+                //List<VisitorsLogs> visitorData = entity.VisitorsLogs.FromSql("select * from VisitorsLogs where VisitorId = @searchInput", new SqlParameter("@searchInput", visitor.VisitorId)).ToList<VisitorsLogs>();
+                VisitorDatabase visitorDatabase = new VisitorDatabase();
+                List<VisitorsLogs> visitorData = visitorDatabase.GetVisitorLogsById(visitor.VisitorId);
                 foreach (var result in visitorData)
                 {
                     VisitorsData entry = new VisitorsData();
@@ -103,16 +108,18 @@ namespace VisitorService
                 throw new Exception("Internal Exception: GetVisitorDataByName" + ex.StackTrace);
             }
         }
-        public List<VisitorsData> GetVisitorsLogByMeetingPerson(string SearchInput)
+        public List<VisitorsData> GetVisitorsLogByMeetingPerson(string whomToMeet)
         {
             try
             {
                 ClearList();
-                var entity = new VisitorsDatabaseContext();
-                List<VisitorsLogs> visitorLogsList = entity.VisitorsLogs.FromSql("select * from VisitorsLogs where WhomToMeet = @searchInput", new SqlParameter("@searchInput", SearchInput)).ToList<VisitorsLogs>();
+                //var entity = new VisitorsDatabaseContext();
+                //List<VisitorsLogs> visitorLogsList = entity.VisitorsLogs.FromSql("select * from VisitorsLogs where WhomToMeet = @searchInput", new SqlParameter("@searchInput", SearchInput)).ToList<VisitorsLogs>();
+                VisitorDatabase visitorDatabase = new VisitorDatabase();
+                List<VisitorsLogs> visitorLogsList = visitorDatabase.GetVisitorLogsByWhomToMeet(whomToMeet);
                 foreach (var entry in visitorLogsList)
                 {
-                    GetVisitorDataByMeetingPerson(entry, SearchInput);
+                    GetVisitorDataByMeetingPerson(entry, whomToMeet);
                 }
                 return AllLogs;
             }
@@ -125,14 +132,16 @@ namespace VisitorService
         {
             try
             {
-                var entity = new VisitorsDatabaseContext();
-                List<Visitors> visitorData = entity.Visitors.FromSql("select * from Visitors where VisitorId = @searchInput", new SqlParameter("@searchInput", visitor.VisitorId)).ToList<Visitors>();
-                foreach (var result in visitorData)
-                {
+                //var entity = new VisitorsDatabaseContext();
+                //Visitors visitorData = entity.Visitors.FromSql("select * from Visitors where VisitorId = @searchInput", new SqlParameter("@searchInput", visitor.VisitorId)).SingleOrDefault();
+                VisitorDatabase visitorDatabase = new VisitorDatabase();
+                Visitors visitorData = visitorDatabase.GetVisitorById(visitor.VisitorId);
+                //foreach (var result in visitorData)
+                //{
                     VisitorsData entry = new VisitorsData();
-                    entry.NameOfVisitor = result.NameOfVisitor;
-                    entry.GovtIdProof = result.GovtIdProof;
-                    entry.Contact = result.Contact;
+                    entry.NameOfVisitor = visitorData.NameOfVisitor;
+                    entry.GovtIdProof = visitorData.GovtIdProof;
+                    entry.Contact = visitorData.Contact;
                     entry.ComingFrom = visitor.ComingFrom;
                     entry.WhomToMeet = visitor.WhomToMeet;
                     entry.EmployeeId = visitor.EmployeeId;
@@ -142,7 +151,7 @@ namespace VisitorService
                     entry.DateOfVisit = visitor.DateOfVisit.ToString();
                     entry.GuardId = visitor.GuardId;
                     AllLogs.Add(entry);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -264,7 +273,7 @@ namespace VisitorService
             var entity = new VisitorsDatabaseContext();
             List<Visitors> visitorEntry = entity.Visitors.FromSql("select * from Visitors where NameOfVisitor = @searchInput", new SqlParameter("@searchInput", VisitorData.nameOfVisitor)).ToList<Visitors>();
             List<Employees> empEntry = entity.Employees.FromSql("select * from Employees where EmployeeName = @searchInput", new SqlParameter("@searchInput", VisitorData.whomToMeet)).ToList<Employees>();
-            entity.Database.ExecuteSqlCommand("insert into VisitorsLogs(ComingFrom,WhomToMeet,EmployeeId,DateOfVisit,TimeIn,TimeOut,VisitorId,GuardId,PurposeOfVisit) values('" + VisitorData.comingFrom + "','" + VisitorData.whomToMeet + "','" + empEntry[0].EmployeeId + "','" + DateTime.Today + "','" + DateTime.Now + "','22:30:00.0000000','" + visitorEntry[0].VisitorId + "','" + VisitorData.guardId + "','" + VisitorData.purposeOfVisit + "')");
+            entity.Database.ExecuteSqlCommand("insert into VisitorsLogs(ComingFrom,WhomToMeet,EmployeeId,DateOfVisit,TimeIn,TimeOut,VisitorId,GuardId,PurposeOfVisit) values('" + VisitorData.comingFrom + "','" + VisitorData.whomToMeet + "','" + empEntry[0].EmployeeId + "','" + DateTime.Today + "','" + DateTime.Now + "','"+ DateTime.Now +"','" + visitorEntry[0].VisitorId + "','" + VisitorData.guardId + "','" + VisitorData.purposeOfVisit + "')");
         }
         public List<MatchingSubstring> AllMatchingEmployeeNames(string userInput)
         {

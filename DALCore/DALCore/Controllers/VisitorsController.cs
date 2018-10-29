@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DALCore.EntityFramework_Access;
+﻿using System.Collections.Generic;
 using DALCore.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Core.Contracts;
 using VisitorService;
 using Core.Contracts.Models; 

@@ -1,0 +1,12 @@
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\bin\Debug\netcoreapp2.1\SQLDatabase.deps.json
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\bin\Debug\netcoreapp2.1\SQLDatabase.dll
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\bin\Debug\netcoreapp2.1\SQLDatabase.pdb
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\bin\Debug\netcoreapp2.1\Core.Contracts.dll
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\bin\Debug\netcoreapp2.1\Core.Contracts.pdb
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\obj\Debug\netcoreapp2.1\SQLDatabase.csprojAssemblyReference.cache
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\obj\Debug\netcoreapp2.1\SQLDatabase.csproj.CoreCompileInputs.cache
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\obj\Debug\netcoreapp2.1\SQLDatabase.AssemblyInfoInputs.cache
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\obj\Debug\netcoreapp2.1\SQLDatabase.AssemblyInfo.cs
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\obj\Debug\netcoreapp2.1\SQLDatabase.csproj.CopyComplete
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\obj\Debug\netcoreapp2.1\SQLDatabase.dll
+C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\SQLDatabase\obj\Debug\netcoreapp2.1\SQLDatabase.pdb

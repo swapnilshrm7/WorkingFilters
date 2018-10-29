@@ -7,6 +7,9 @@ using VisitorService;
 using GuardService;
 using UserService;
 using EmployeeService;
+using DALCore.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace DALCore
 {
@@ -34,7 +37,9 @@ namespace DALCore
             services.AddTransient<IUserAuthentication, UserLoginManager>();  
             services.AddTransient<IForgotPassword, ForgotPasswordManager>();
             services.AddTransient<IEmployee, EmployeeManager>();
-            //DI 
+            
+            //services.AddDbContext<VisitorsDatabaseContext>(options =>
+            //                    options.UseSqlServer(Configuration.GetConnectionString("TaviscaVisitorDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

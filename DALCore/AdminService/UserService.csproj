@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj" />
+    <ProjectReference Include="..\SQLDatabase\SQLDatabase.csproj" />
   </ItemGroup>
 
   <ItemGroup>
