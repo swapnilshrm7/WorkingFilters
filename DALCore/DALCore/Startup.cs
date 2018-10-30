@@ -10,6 +10,7 @@ using EmployeeService;
 using DALCore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using FaceService;
 
 namespace DALCore
 {
@@ -37,7 +38,8 @@ namespace DALCore
             services.AddTransient<IUserAuthentication, UserLoginManager>();  
             services.AddTransient<IForgotPassword, ForgotPasswordManager>();
             services.AddTransient<IEmployee, EmployeeManager>();
-            
+            services.AddTransient<IFace, FaceManager>();
+
             //services.AddDbContext<VisitorsDatabaseContext>(options =>
             //                    options.UseSqlServer(Configuration.GetConnectionString("TaviscaVisitorDatabase")));
         }

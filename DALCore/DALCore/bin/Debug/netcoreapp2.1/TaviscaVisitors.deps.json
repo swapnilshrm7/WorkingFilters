@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "37ffc05ee963415a8c16e06d30f466e774c4754d"
+    "signature": "db24f8a9a4351cfb445d1de0b81e8f2f3932c5c4"
   },
   "compilationOptions": {
     "defines": [
@@ -28,6 +28,7 @@
           "AWSSDK.S3": "3.3.26.1",
           "Amazon.S3": "0.11.5",
           "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
           "EmployeeService": "1.0.0",
           "FaceService": "1.0.0",
           "FirebaseAdmin": "1.0.0",
@@ -197,6 +198,32 @@
         },
         "compile": {
           "lib/net45/EntityFramework.dll": {}
+        }
+      },
+      "EPPlus.Core/1.5.4": {
+        "dependencies": {
+          "System.Collections.NonGeneric": "4.3.0",
+          "System.Data.Common": "4.3.0",
+          "System.Data.SqlClient": "4.5.1",
+          "System.Drawing.Common": "4.5.0-preview1-25914-04",
+          "System.Reflection": "4.3.0",
+          "System.Security.Claims": "4.3.0",
+          "System.Security.Cryptography.Pkcs": "4.5.0",
+          "System.Security.Cryptography.X509Certificates": "4.3.2",
+          "System.Text.Encoding.CodePages": "4.5.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.ThreadPool": "4.3.0",
+          "System.Xml.XPath.XmlDocument": "4.3.0",
+          "System.Xml.XmlDocument": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/EPPlus.Core.dll": {
+            "assemblyVersion": "1.5.4.0",
+            "fileVersion": "1.5.4.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/EPPlus.Core.dll": {}
         }
       },
       "Firebase.js/2.1.2": {},
@@ -635,7 +662,7 @@
           "System.Security.Cryptography.Algorithms": "4.3.1",
           "System.Threading": "4.3.0",
           "System.Threading.Tasks": "4.3.0",
-          "System.Threading.ThreadPool": "4.0.10",
+          "System.Threading.ThreadPool": "4.3.0",
           "System.Threading.Timer": "4.0.1"
         },
         "runtime": {
@@ -1290,6 +1317,18 @@
           "lib/netstandard1.0/System.Composition.TypedParts.dll": {}
         }
       },
+      "System.Data.Common/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        }
+      },
       "System.Data.Entity.Repository/2.0.0.1": {
         "dependencies": {
           "EntityFramework": "5.0.0"
@@ -1313,6 +1352,34 @@
         },
         "compile": {
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
+        }
+      },
+      "System.Drawing.Common/4.5.0-preview1-25914-04": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25914.4"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25914.4"
+          },
+          "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25914.4"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Drawing.Common.dll": {}
         }
       },
       "System.Globalization.Calendars/4.3.0": {
@@ -1466,7 +1533,7 @@
           "System.Dynamic.Runtime": "4.3.0",
           "System.Reactive.Interfaces": "3.1.1",
           "System.Threading.Thread": "4.3.0",
-          "System.Threading.ThreadPool": "4.0.10"
+          "System.Threading.ThreadPool": "4.3.0"
         },
         "runtime": {
           "lib/netcoreapp1.0/System.Reactive.Core.dll": {
@@ -1684,7 +1751,7 @@
           }
         }
       },
-      "System.Threading.ThreadPool/4.0.10": {
+      "System.Threading.ThreadPool/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0",
           "System.Runtime.Handles": "4.3.0"
@@ -1718,6 +1785,29 @@
           "Microsoft.AspNet.Providers.Core": "1.0.0"
         }
       },
+      "System.Xml.XPath.XmlDocument/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0",
+          "System.Xml.XPath": "4.3.0",
+          "System.Xml.XmlDocument": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.24705.1"
+          }
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
+        }
+      },
       "SystemWebPackage/1.0.0": {},
       "Twilio/5.20.1": {
         "dependencies": {
@@ -1742,6 +1832,7 @@
         "dependencies": {
           "AWSSDK.Core": "3.3.29.2",
           "AWSSDK.Rekognition": "3.3.11.10",
+          "EPPlus.Core": "1.5.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
           "System.Security.Cryptography.Algorithms": "4.3.1",
           "System.Security.Cryptography.ProtectedData": "4.5.0",
@@ -1758,7 +1849,8 @@
         "dependencies": {
           "AWSSDK.Core": "3.3.29.2",
           "AWSSDK.Rekognition": "3.3.11.10",
-          "Core.Contracts": "1.0.0"
+          "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4"
         },
         "runtime": {
           "EmployeeService.dll": {}
@@ -1770,7 +1862,8 @@
       "FaceService/1.0.0": {
         "dependencies": {
           "AWSSDK.Core": "3.3.29.2",
-          "AWSSDK.Rekognition": "3.3.11.10"
+          "AWSSDK.Rekognition": "3.3.11.10",
+          "EPPlus.Core": "1.5.4"
         },
         "runtime": {
           "FaceService.dll": {}
@@ -1784,6 +1877,7 @@
           "AWSSDK.Core": "3.3.29.2",
           "AWSSDK.Rekognition": "3.3.11.10",
           "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
           "System.Security.Cryptography.Algorithms": "4.3.1",
           "System.Security.Cryptography.ProtectedData": "4.5.0",
           "System.Security.Cryptography.X509Certificates": "4.3.2"
@@ -1799,7 +1893,8 @@
         "dependencies": {
           "AWSSDK.Core": "3.3.29.2",
           "AWSSDK.Rekognition": "3.3.11.10",
-          "Core.Contracts": "1.0.0"
+          "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4"
         },
         "runtime": {
           "SQLDatabase.dll": {}
@@ -1816,6 +1911,7 @@
           "AWSSDKCPP-Rekognition": "1.6.20160627.25",
           "Amazon.S3": "0.11.5",
           "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
           "Firebase.js": "2.1.2",
           "FirebaseAuthentication.net": "3.1.0",
           "FirebaseDatabase.net": "3.3.3",
@@ -1845,6 +1941,7 @@
           "AWSSDK.Core": "3.3.29.2",
           "AWSSDK.Rekognition": "3.3.11.10",
           "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
           "SQLDatabase": "1.0.0",
           "System.Security.Cryptography.Algorithms": "4.3.1",
@@ -4261,6 +4358,9 @@
         "dependencies": {
           "System.Security.Cryptography.Cng": "4.5.0"
         },
+        "compile": {
+          "ref/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {}
+        },
         "compileOnly": true
       },
       "System.Security.Cryptography.Primitives/4.3.0": {
@@ -4321,6 +4421,9 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.1.0",
           "System.Runtime.CompilerServices.Unsafe": "4.5.1"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
         },
         "compileOnly": true
       },
@@ -4596,6 +4699,13 @@
       "sha512": "sha512-SbsFSW+ISwO94Vt7583cFCh0kb9FIAmdTWo80BLumDnAjDX5SOSEHTsavQzTN14G/yRLOPtS6d9mXNIqe6NiKQ==",
       "path": "entityframework/5.0.0",
       "hashPath": "entityframework.5.0.0.nupkg.sha512"
+    },
+    "EPPlus.Core/1.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eaESTJZVOWl8HNFdm9XJ+lLll0VZogJvpFIlLZcAfwofGrB7klJhmoYjl6mfyLJM9btBhSXfO6XHY0hvXUDDVg==",
+      "path": "epplus.core/1.5.4",
+      "hashPath": "epplus.core.1.5.4.nupkg.sha512"
     },
     "Firebase.js/2.1.2": {
       "type": "package",
@@ -5157,6 +5267,13 @@
       "path": "system.composition.typedparts/1.0.31",
       "hashPath": "system.composition.typedparts.1.0.31.nupkg.sha512"
     },
+    "System.Data.Common/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ==",
+      "path": "system.data.common/4.3.0",
+      "hashPath": "system.data.common.4.3.0.nupkg.sha512"
+    },
     "System.Data.Entity.Repository/2.0.0.1": {
       "type": "package",
       "serviceable": true,
@@ -5170,6 +5287,13 @@
       "sha512": "sha512-m86SgxAIi5j0iGzx2y1LrcMcopIYfinfcojyQ9CcNRy3MZvi0dVuDlMj2M7kV6MMGSunqZ+OnQ+rQbxWafFBaw==",
       "path": "system.diagnostics.diagnosticsource/4.5.1",
       "hashPath": "system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512"
+    },
+    "System.Drawing.Common/4.5.0-preview1-25914-04": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2jJby4+hzxON5gSOaDaOJZ2J6lIPBJqbWn37souvi+uDtknGFYRi//mUSPbW0Hp5HW2YMMFE6iRHTgc4YPOmuw==",
+      "path": "system.drawing.common/4.5.0-preview1-25914-04",
+      "hashPath": "system.drawing.common.4.5.0-preview1-25914-04.nupkg.sha512"
     },
     "System.Globalization.Calendars/4.3.0": {
       "type": "package",
@@ -5318,12 +5442,12 @@
       "path": "system.threading.overlapped/4.0.1",
       "hashPath": "system.threading.overlapped.4.0.1.nupkg.sha512"
     },
-    "System.Threading.ThreadPool/4.0.10": {
+    "System.Threading.ThreadPool/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IMXgB5Vf/5Qw1kpoVgJMOvUO1l32aC+qC3OaIZjWJOjvcxuxNWOK2ZTWWYXfij22NHxT2j1yWX5vlAeQWld9vA==",
-      "path": "system.threading.threadpool/4.0.10",
-      "hashPath": "system.threading.threadpool.4.0.10.nupkg.sha512"
+      "sha512": "sha512-k/+g4b7vjdd4aix83sTgC9VG6oXYKAktSfNIJUNGxPEj7ryEOfzHHhfnmsZvjxawwcD9HyWXKCXmPjX8U4zeSw==",
+      "path": "system.threading.threadpool/4.3.0",
+      "hashPath": "system.threading.threadpool.4.3.0.nupkg.sha512"
     },
     "System.Threading.Timer/4.0.1": {
       "type": "package",
@@ -5352,6 +5476,13 @@
       "sha512": "sha512-R2b6oc+MiuJyeRyYZtUg14oTvxibI4rQtAVgd0FxM8Il1uCqZgPDXP/IewfUZxsIm/X2DPdUyeUnFBpi49At3A==",
       "path": "system.web.providers.core/1.1.0",
       "hashPath": "system.web.providers.core.1.1.0.nupkg.sha512"
+    },
+    "System.Xml.XPath.XmlDocument/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-91tvfHWHSrYFPolCwWYqbpo1YaoBUCQ3uNZ/O/zr0ev5BnkoATJoie16ywlMVUaXZtfSfNELxhtG3aqpTfwR4w==",
+      "path": "system.xml.xpath.xmldocument/4.3.0",
+      "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
     },
     "SystemWebPackage/1.0.0": {
       "type": "package",

@@ -23,6 +23,7 @@
     <PackageReference Include="Amazon.S3" Version="0.11.5" />
     <PackageReference Include="AWSSDK.Core" Version="3.3.29.2" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.26.1" />
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="FirebaseAdmin" Version="1.0.0" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.2" />
     <PackageReference Include="FirebaseTokenGenerator" Version="2.0.0" />

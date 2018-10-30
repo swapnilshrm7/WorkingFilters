@@ -23,6 +23,11 @@ namespace DALCore.Controllers
     [ApiController]
     public class CompareFacesController : ControllerBase
     {
+        IFace faceManager;
+        public CompareFacesController(IFace _faceManager)
+        {
+            faceManager = _faceManager;
+        }
         [Microsoft.AspNetCore.Mvc.HttpGet]
         [Microsoft.AspNetCore.Mvc.Route("api/Guard")]
         public async System.Threading.Tasks.Task<bool> CompareFacesAsync()
@@ -31,7 +36,6 @@ namespace DALCore.Controllers
             ForgotPasswordManager obj = new ForgotPasswordManager();
             try
             {
-                FaceManager faceManager = new FaceManager();
                 return await faceManager.CompareFacesAsync();
             }
             catch (Exception exception)

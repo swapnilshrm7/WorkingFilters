@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FaceService
 {
-    public class FaceManager
+    public class FaceManager : IFace
     {
         public async System.Threading.Tasks.Task<bool> CompareFacesAsync()
         {

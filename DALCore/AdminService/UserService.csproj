@@ -14,6 +14,7 @@
     <PackageReference Include="AWSSDK.Rekognition" Version="3.3.11.10" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.26.1" />
     <PackageReference Include="AWSSDKCPP-Rekognition" Version="1.6.20160627.25" />
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Firebase.js" Version="2.1.2" />
     <PackageReference Include="FirebaseAuthentication.net" Version="3.1.0" />
     <PackageReference Include="FirebaseDatabase.net" Version="3.3.3" />
