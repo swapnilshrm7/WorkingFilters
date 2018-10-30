@@ -1,14 +1,15 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "beaedbae99ef0d2800b7ceacc832e1a522e2d0a5"
+    "signature": "ef6fb62dc9ba8cc32c021c4e8b49e0363d182d46"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
       "UserService/1.0.0": {
         "dependencies": {
-          "AWSSDK.Rekognition": "3.3.11.7",
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
           "AWSSDK.S3": "3.3.26.1",
           "AWSSDKCPP-Rekognition": "1.6.20160627.25",
           "Amazon.S3": "0.11.5",
@@ -57,7 +58,7 @@
           }
         }
       },
-      "AWSSDK.Core/3.3.28.1": {
+      "AWSSDK.Core/3.3.29.2": {
         "dependencies": {
           "Microsoft.CSharp": "4.0.1",
           "System.Net.Requests": "4.0.11",
@@ -68,24 +69,24 @@
         "runtime": {
           "lib/netstandard1.3/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.3.28.1"
+            "fileVersion": "3.3.29.2"
           }
         }
       },
-      "AWSSDK.Rekognition/3.3.11.7": {
+      "AWSSDK.Rekognition/3.3.11.10": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.28.1"
+          "AWSSDK.Core": "3.3.29.2"
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.Rekognition.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.3.11.7"
+            "fileVersion": "3.3.11.10"
           }
         }
       },
       "AWSSDK.S3/3.3.26.1": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.28.1"
+          "AWSSDK.Core": "3.3.29.2"
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.S3.dll": {
@@ -1814,6 +1815,8 @@
       },
       "Core.Contracts/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
           "System.Security.Cryptography.Algorithms": "4.3.1",
           "System.Security.Cryptography.ProtectedData": "4.5.0",
@@ -1825,6 +1828,8 @@
       },
       "SQLDatabase/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
           "Core.Contracts": "1.0.0"
         },
         "runtime": {
@@ -1853,19 +1858,19 @@
       "path": "amazon.s3/0.11.5",
       "hashPath": "amazon.s3.0.11.5.nupkg.sha512"
     },
-    "AWSSDK.Core/3.3.28.1": {
+    "AWSSDK.Core/3.3.29.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4LvND/YE5bNRQBcFjDsTZ4dUZn1s45ZMo0enj/jaSlP9V7JZLr1bil06iHR7EczTSCXOhpGbXxmeBbWeOb74aw==",
-      "path": "awssdk.core/3.3.28.1",
-      "hashPath": "awssdk.core.3.3.28.1.nupkg.sha512"
+      "sha512": "sha512-FSAmwOk1Dd/cLLA3aGGE+uojl3sr9ix+Ga/hoD+B64hRL9Ob2ft6h5ckfHR/+J+x96DqAkiMG4BUV83R8vUPRQ==",
+      "path": "awssdk.core/3.3.29.2",
+      "hashPath": "awssdk.core.3.3.29.2.nupkg.sha512"
     },
-    "AWSSDK.Rekognition/3.3.11.7": {
+    "AWSSDK.Rekognition/3.3.11.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-V6tTAWNnAj/okxrIaPzsH7dJ2G6Vd5HPdkVHTe3VRPd6f3Rc5VuwA84mcMxjJN5PZa5Ybt4S5icb56wPav1huw==",
-      "path": "awssdk.rekognition/3.3.11.7",
-      "hashPath": "awssdk.rekognition.3.3.11.7.nupkg.sha512"
+      "sha512": "sha512-JUafX1QKlLyeMZTSlSOFNucnesNcBkJDmr47kRLadOaV4peaPwBsQIbm/SE449/VdgbGQcmbRzpkJCHeBVNOdg==",
+      "path": "awssdk.rekognition/3.3.11.10",
+      "hashPath": "awssdk.rekognition.3.3.11.10.nupkg.sha512"
     },
     "AWSSDK.S3/3.3.26.1": {
       "type": "package",
@@ -1996,7 +2001,7 @@
     "Microsoft.AspNet.WebApi.Core/5.2.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8UiHr2VkrpwDCwXaXea8pNaR2zvJ3HYwsmWmkTFY1lEB2u4eFnL+aM+/GJK91Ud3KQ7Xse+Vysvj/UalM3IlmA==",
+      "sha512": "sha512-QMFixs/MvKZXjfUbV0gXxF85LKi+keu/zJKv13upg/JlcxJ+wdLSYzyHO/sgPPUuFVstgndK6Zt3VduWeqFmHQ==",
       "path": "microsoft.aspnet.webapi.core/5.2.6",
       "hashPath": "microsoft.aspnet.webapi.core.5.2.6.nupkg.sha512"
     },
@@ -2059,7 +2064,7 @@
     "Microsoft.Bcl.Build/1.0.14": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-57EJ/NGEDQkIlQs9aO4adkYeaHMdg+pn5D8RfO1ZXQJgHOjTfGH+kWfppEaD6cg0PE2kGn9/GsACcu2LLyJM0g==",
+      "sha512": "sha512-cDLKSvNvRa519hplsbSoYqO69TjdDIhfjtKUM0g20/nVROoWsGav9KCI9HtnGjLmdV1+TcUUDhbotcllibjPEA==",
       "path": "microsoft.bcl.build/1.0.14",
       "hashPath": "microsoft.bcl.build.1.0.14.nupkg.sha512"
     },
@@ -2185,7 +2190,7 @@
     "Microsoft.Extensions.ObjectPool/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-drOmgNZCJiNEqFM/TvyqwtogS8wqoWGQCW5KB/CVGKL6VXHw8OOMdaHyspp8HPstP9UDnrnuq+8eaCaAcQg6tA==",
+      "sha512": "sha512-u/vJNHsHilIr3bNOdnzjvlaHFTP4JacRzJLoqu3o5kl8Cxs1HrSLJ1Hv9o3ZXCwVgwkFLRFKF0a5+RDZhNExZQ==",
       "path": "microsoft.extensions.objectpool/2.0.0",
       "hashPath": "microsoft.extensions.objectpool.2.0.0.nupkg.sha512"
     },
@@ -2458,7 +2463,7 @@
     "System.Buffers/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-AwarXzzoDwX6BgrhjoJsk6tUezZEozOT5Y9QKF94Gl4JK91I4PIIBkBco9068Y9/Dra8Dkbie99kXB8+1BaYKw==",
+      "sha512": "sha512-VCJfpWcYG1gT3WwivZWgT0KaqY678MQBvrOI2si6V8GHeQOtuW+wpiv5ss4KyfGG+cFFdPNaI+nw2/kExCtGgQ==",
       "path": "system.buffers/4.4.0",
       "hashPath": "system.buffers.4.4.0.nupkg.sha512"
     },

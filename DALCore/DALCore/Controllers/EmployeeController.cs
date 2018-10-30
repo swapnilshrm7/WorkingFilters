@@ -24,7 +24,6 @@ namespace DALCore.Controllers
         {
             return employee.GetAllEmployees();
         }
-
         [HttpPut]
         [Route("api/[controller]/EditEmployee")]
         public void EditExistingEmployee([FromBody]Employees Employee)
@@ -33,9 +32,9 @@ namespace DALCore.Controllers
         }
         [HttpPost]
         [Route("api/[controller]/AddEmployee")]
-        public void AddEmployee([FromBody]Employees Employee)
+        public bool AddEmployee([FromBody]Employees Employee)
         {
-            employee.AddNewEmployee(Employee);
+            return employee.AddNewEmployee(Employee);
         }
         [HttpPut]
         [Route("api/[controller]/NameById")]
@@ -44,6 +43,12 @@ namespace DALCore.Controllers
             return employee.GetEmployeeNameById(userId.UserInput);
         }
         [HttpPut]
+        [Route("api/[controller]/EmployeeById")]
+        public Employees GetEmployeeById([FromBody]SearchFilter userId)
+        {
+            return employee.GetEmployeeDetailsById(userId.UserInput);
+        }
+        [HttpGet]
         [Route("api/[controller]/EmployeeLogs")]
         public List<EmployeeLogs> AllEmployeeLogs()
         {

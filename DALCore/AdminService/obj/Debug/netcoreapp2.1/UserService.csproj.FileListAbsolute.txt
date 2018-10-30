@@ -24,3 +24,16 @@ C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\AdminService\obj\Debug\n
 C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.csproj.CopyComplete
 C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.dll
 C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\bin\Debug\netcoreapp2.1\UserService.deps.json
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\bin\Debug\netcoreapp2.1\UserService.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\bin\Debug\netcoreapp2.1\UserService.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\bin\Debug\netcoreapp2.1\Core.Contracts.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\bin\Debug\netcoreapp2.1\SQLDatabase.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\bin\Debug\netcoreapp2.1\Core.Contracts.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\bin\Debug\netcoreapp2.1\SQLDatabase.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.csprojResolveAssemblyReference.cache
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.csproj.CoreCompileInputs.cache
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.AssemblyInfoInputs.cache
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.AssemblyInfo.cs
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\AdminService\obj\Debug\netcoreapp2.1\UserService.pdb

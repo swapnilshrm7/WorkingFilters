@@ -1,0 +1,9 @@
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\bin\Debug\netcoreapp2.1\FaceService.deps.json
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\bin\Debug\netcoreapp2.1\FaceService.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp2.1\FaceService.csprojResolveAssemblyReference.cache
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp2.1\FaceService.csproj.CoreCompileInputs.cache
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp2.1\FaceService.AssemblyInfoInputs.cache
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp2.1\FaceService.AssemblyInfo.cs
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\bin\Debug\netcoreapp2.1\FaceService.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp2.1\FaceService.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp2.1\FaceService.pdb

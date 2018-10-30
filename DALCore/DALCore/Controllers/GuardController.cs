@@ -17,20 +17,20 @@ namespace DALCore.Controllers
         }
         [HttpGet]
         [Route("api/[controller]/Log")]
-        public List<GuardData> GetVisitorsFromLog()
+        public List<GuardData> GetGuardsFromLog()
         {
             return guard.GetAllGuardsFromLog();
         }
 
         [HttpPut]
         [Route("api/[controller]/ByName")]
-        public List<GuardData> GetVisitorsLogByName(SearchFilter searchInput)
+        public List<GuardData> GetGuardsLogByName([FromBody]SearchFilter searchInput)
         {
             return guard.GetGuardsLogByName(searchInput.UserInput);
         }
         [HttpPut]
         [Route("api/[controller]/DateAndTime")]
-        public List<GuardData> GetLogByDateAndTime(DateAndTime UserInput)
+        public List<GuardData> GetLogByDateAndTime([FromBody]DateAndTime UserInput)
         {
             return guard.GetGuardLogByDateAndTime(UserInput.fromDate, UserInput.toDate, UserInput.fromTime, UserInput.toTime);
         }
@@ -42,23 +42,35 @@ namespace DALCore.Controllers
         }
         [HttpPut]
         [Route("api/[controller]/UniqueGuardByName")]
-        public List<Guard> GetGuardByName(SearchFilter searchInput)
+        public List<Guard> GetGuardByName([FromBody]SearchFilter searchInput)
         {
             return guard.GetUniqueVisitorsByName(searchInput.UserInput);
         }
+        [HttpPut]
+        [Route("api/[controller]/EditGuard")]
+        public bool EditingGuard([FromBody]Guard Details)
+        {
+            return guard.EditExistingGuard(Details);
+        }
         [HttpPost]
         [Route("api/[controller]/AddGuard")]
-        public bool AddNewGuard(Guard NewGuard)
+        public bool AddNewGuard([FromBody]Guard NewGuard)
         {
-            if(guard.AddGuard(NewGuard))
+            if (guard.AddGuard(NewGuard))
                 return true;
             return false;
         }
-        [HttpPut]
+        [HttpDelete]
         [Route("api/[controller]/RemoveGuard")]
-        public void RemoveGuard(SearchFilter searchInput)
+        public void RemoveGuard([FromBody]SearchFilter searchInput)
         {
             guard.DeleteGuard(searchInput.UserInput);
+        }
+        [HttpPut]
+        [Route("api/[controller]/GuardById")]
+        public Guard GetGuardById([FromBody]SearchFilter userId)
+        {
+            return guard.GetGuardDetailsById(userId.UserInput);
         }
     }
 }

@@ -21,8 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="Amazon.S3" Version="0.11.5" />
-    <PackageReference Include="AWSSDK.Core" Version="3.3.28.1" />
-    <PackageReference Include="AWSSDK.Rekognition" Version="3.3.11.7" />
+    <PackageReference Include="AWSSDK.Core" Version="3.3.29.2" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.26.1" />
     <PackageReference Include="FirebaseAdmin" Version="1.0.0" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.2" />
@@ -52,6 +51,7 @@
     <ProjectReference Include="..\AdminService\UserService.csproj" />
     <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj" />
     <ProjectReference Include="..\EmployeeService\EmployeeService.csproj" />
+    <ProjectReference Include="..\FaceService\FaceService.csproj" />
     <ProjectReference Include="..\GuardService\GuardService.csproj" />
     <ProjectReference Include="..\VisitorService\VisitorService.csproj" />
   </ItemGroup>

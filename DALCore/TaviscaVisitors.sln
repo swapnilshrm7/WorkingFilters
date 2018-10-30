@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaviscaVisitors", "DALCore\TaviscaVisitors.csproj", "{B3B50C40-811C-4BE8-A476-18928C68CEE9}"
 EndProject
@@ -19,7 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService", "EmployeeService\EmployeeService.csproj", "{D6A00824-A671-47FD-923A-D416FB9C2FA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLDatabase", "SQLDatabase\SQLDatabase.csproj", "{AF25A02A-CD80-4B28-85C5-8901D3936250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLDatabase", "SQLDatabase\SQLDatabase.csproj", "{AF25A02A-CD80-4B28-85C5-8901D3936250}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceService", "FaceService\FaceService.csproj", "{2B3C3651-A4B3-4B60-AD37-47AC31899650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{AF25A02A-CD80-4B28-85C5-8901D3936250}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF25A02A-CD80-4B28-85C5-8901D3936250}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF25A02A-CD80-4B28-85C5-8901D3936250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3C3651-A4B3-4B60-AD37-47AC31899650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3C3651-A4B3-4B60-AD37-47AC31899650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3C3651-A4B3-4B60-AD37-47AC31899650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3C3651-A4B3-4B60-AD37-47AC31899650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{C4B7BAAA-EE1F-465D-A287-C925221EE362} = {196B19B2-AE3E-4481-BED8-BE36E1CED9D5}
 		{79B32723-7A2D-4661-86AE-89FF8D5B9049} = {196B19B2-AE3E-4481-BED8-BE36E1CED9D5}
 		{D6A00824-A671-47FD-923A-D416FB9C2FA2} = {196B19B2-AE3E-4481-BED8-BE36E1CED9D5}
+		{2B3C3651-A4B3-4B60-AD37-47AC31899650} = {196B19B2-AE3E-4481-BED8-BE36E1CED9D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFC4CFF5-9117-439D-BA58-3D7605112C48}

@@ -228,7 +228,9 @@ namespace GuardService
             try
             {
                 var entity = new VisitorsDatabaseContext();
-                entity.Database.ExecuteSqlCommand("DELETE FROM Guard WHERE GuardId=@GuardId", new SqlParameter("@GuardId", GuardId));
+                var GuardDetails = entity.Guard.Find(GuardId);
+                GuardDetails.GuardStatus = "INACTIVE";
+                entity.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -262,6 +264,39 @@ namespace GuardService
             {
                 throw new Exception("Could not Add Guard. Please try again" + ex.StackTrace);
             }
+        }
+        public bool EditExistingGuard(Guard details)
+        {
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                var GuardDetails = entity.Guard.Find(details.GuardId);
+                GuardDetails.DateOfJoining = details.DateOfJoining;
+                GuardDetails.DateOfResignation = details.DateOfResignation;
+                GuardDetails.EmailId = details.EmailId;
+                GuardDetails.EmergencyContactNumber = details.EmergencyContactNumber;
+                GuardDetails.EmergencyContactPerson = details.EmergencyContactPerson;
+                GuardDetails.Gender = details.Gender;
+                GuardDetails.GuardName = details.GuardName;
+                GuardDetails.GuardStatus = details.GuardStatus;
+                GuardDetails.LocalAddress = details.LocalAddress;
+                GuardDetails.MedicalSpecification = details.MedicalSpecification;
+                GuardDetails.PrimaryContactNumber = details.PrimaryContactNumber;
+                GuardDetails.Remark = details.Remark;
+                GuardDetails.SecondaryContactNumber = details.SecondaryContactNumber;
+                entity.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public Guard GetGuardDetailsById(string GuardId)
+        {
+            var entity = new VisitorsDatabaseContext();
+            Guard GuardDetails = entity.Guard.Find(GuardId);
+            return GuardDetails;
         }
         public void ClearList()
         {

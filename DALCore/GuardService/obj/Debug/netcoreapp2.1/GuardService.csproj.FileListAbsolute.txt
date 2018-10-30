@@ -22,3 +22,14 @@ C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\GuardService\obj\Debug\n
 C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.csproj.CopyComplete
 C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.dll
 C:\Users\ggabbi\Desktop\Version4\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\bin\Debug\netcoreapp2.1\GuardService.deps.json
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\bin\Debug\netcoreapp2.1\GuardService.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\bin\Debug\netcoreapp2.1\GuardService.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\bin\Debug\netcoreapp2.1\Core.Contracts.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\bin\Debug\netcoreapp2.1\Core.Contracts.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.csproj.CoreCompileInputs.cache
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.AssemblyInfoInputs.cache
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.AssemblyInfo.cs
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\GuardService\obj\Debug\netcoreapp2.1\GuardService.csprojResolveAssemblyReference.cache
