@@ -18,7 +18,7 @@ namespace GuardService
             {
                 ClearList();
                 var entity = new VisitorsDatabaseContext();
-                List<GuardLogs> guardLogsList = entity.GuardLogs.FromSql("select * from GuardLogs").ToList<GuardLogs>();
+                List<GuardLogs> guardLogsList = entity.GuardLogs.ToList<GuardLogs>();
                 foreach (var entry in guardLogsList)
                 {
                     GetGuardData(entry);
@@ -73,7 +73,7 @@ namespace GuardService
             {
                 ClearList();
                 var entity = new VisitorsDatabaseContext();
-                List<Guard> guardLogsList = entity.Guard.FromSql("select * from Guard where GuardName  = @searchInput", new SqlParameter("@searchInput", searchInput)).ToList<Guard>();
+                List<Guard> guardLogsList = entity.Guard.Where(entry => entry.GuardName == searchInput).ToList<Guard>();
                 foreach (var entry in guardLogsList)
                 {
                     GetGuardDataByName(entry);
@@ -90,7 +90,7 @@ namespace GuardService
             try
             {
                 var entity = new VisitorsDatabaseContext();
-                List<GuardLogs> guardData = entity.GuardLogs.FromSql("select * from GuardLogs where GuardId = @searchInput", new SqlParameter("@searchInput", guard.GuardId)).ToList<GuardLogs>();
+                List<GuardLogs> guardData = entity.GuardLogs.Where(entry => entry.GuardId == guard.GuardId).ToList<GuardLogs>();
                 foreach (var result in guardData)
                 {
                     GuardData guardEntry = new GuardData();
@@ -159,7 +159,7 @@ namespace GuardService
             {
                 ClearList();
                 var entity = new VisitorsDatabaseContext();
-                List<Guard> GuardsList = entity.Guard.FromSql("select * from Guard").ToList<Guard>();
+                List<Guard> GuardsList = entity.Guard.ToList<Guard>();
                 foreach (var entry in GuardsList)
                 {
                     Guard uniqueGuard = new Guard();
@@ -194,7 +194,7 @@ namespace GuardService
             {
                 ClearList();
                 var entity = new VisitorsDatabaseContext();
-                List<Guard> GuardsList = entity.Guard.FromSql("select * from Guard where GuardName = @searchInput", new SqlParameter("@searchInput", searchInput)).ToList<Guard>();
+                List<Guard> GuardsList = entity.Guard.Where(entry => entry.GuardName == searchInput).ToList<Guard>();
                 foreach (var entry in GuardsList)
                 {
                     Guard uniqueGuard = new Guard();
@@ -248,17 +248,27 @@ namespace GuardService
                     NewGuard.MedicalSpecification = "";
                 if (NewGuard.Remark == null)
                     NewGuard.Remark = "";
-                var query = entity.Database.ExecuteSqlCommand("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress," +
-                    " EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)" +
-                    "values(@GuardId, @GuardName, @EmailId, @GuardStatus, @Gender, @DateOfBirth, @LocalAddress, @PermanentAddress," +
-                    "@EmergencyContactPerson, @EmergencyContactNumber, @PrimaryContactNumber, @SecondaryContactNumber, @DateOfJoining, @DateOfResignation, @Remark, @BloodGroup, @MedicalSpecification)",
-                    new SqlParameter("@GuardId", NewGuard.GuardId), new SqlParameter("@GuardName", NewGuard.GuardName), new SqlParameter("@EmailId", NewGuard.EmailId), new SqlParameter("@GuardStatus", "Active"),
-                    new SqlParameter("@Gender", NewGuard.Gender), new SqlParameter("@DateOfBirth", NewGuard.DateOfBirth), new SqlParameter("@LocalAddress", NewGuard.LocalAddress), new SqlParameter("@PermanentAddress",
-                    NewGuard.PermanentAddress), new SqlParameter("@EmergencyContactPerson", NewGuard.EmergencyContactPerson), new SqlParameter("@EmergencyContactNumber", NewGuard.EmergencyContactNumber),
-                    new SqlParameter("@PrimaryContactNumber", NewGuard.PrimaryContactNumber), new SqlParameter("@SecondaryContactNumber", NewGuard.SecondaryContactNumber), new SqlParameter("@DateOfJoining", NewGuard.DateOfJoining),
-                    new SqlParameter("@DateOfResignation", ""), new SqlParameter("@Remark", NewGuard.Remark), new SqlParameter("@BloodGroup", NewGuard.BloodGroup), new SqlParameter("@MedicalSpecification", NewGuard.MedicalSpecification));
+                Guard NewGuardEntry = new Guard();
+                NewGuardEntry.GuardId = NewGuard.GuardId;
+                NewGuardEntry.GuardName = NewGuard.GuardName;
+                NewGuardEntry.EmailId = NewGuard.EmailId;
+                NewGuardEntry.GuardStatus = NewGuard.GuardStatus;
+                NewGuardEntry.Gender = NewGuard.Gender;
+                NewGuardEntry.DateOfBirth = NewGuard.DateOfBirth;
+                NewGuardEntry.LocalAddress = NewGuard.LocalAddress;
+                NewGuardEntry.PermanentAddress = NewGuard.PermanentAddress;
+                NewGuardEntry.EmergencyContactNumber = NewGuard.EmergencyContactNumber;
+                NewGuardEntry.EmergencyContactPerson = NewGuard.EmergencyContactPerson;
+                NewGuardEntry.PrimaryContactNumber = NewGuard.PrimaryContactNumber;
+                NewGuardEntry.SecondaryContactNumber = NewGuard.SecondaryContactNumber;
+                NewGuardEntry.DateOfJoining = NewGuard.DateOfJoining;
+                NewGuardEntry.DateOfResignation = NewGuard.DateOfResignation;
+                NewGuardEntry.Remark = NewGuard.Remark;
+                NewGuardEntry.BloodGroup = NewGuard.BloodGroup;
+                NewGuardEntry.MedicalSpecification = NewGuard.MedicalSpecification;
+                entity.Guard.Add(NewGuardEntry);
+                entity.SaveChanges();
                 return true;
-                //entity.Guard.FromSql("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress, EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)values(NewGuard.GuardId, NewGuard.GuardName, NewGuard.EmailId, NewGuard.GuardStatus, NewGuard.Gender, NewGuard.DateOfBirth, NewGuard.LocalAddress, NewGuard.PermanentAddress, NewGuard.EmergencyContactPerson, NewGuard.EmergencyContactNumber, NewGuard.PrimaryContactNumber, NewGuard.SecondaryContactNumber, NewGuard.DateOfJoining, NewGuard.DateOfResignation, NewGuard.Remark, NewGuard.BloodGroup, NewGuard.MedicalSpecification");
             }
             catch (Exception ex)
             {
