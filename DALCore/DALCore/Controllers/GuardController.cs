@@ -38,13 +38,13 @@ namespace DALCore.Controllers
         [Route("api/[controller]/AllGuards")]
         public List<Guard> GetAllUniqueGuards()
         {
-            return guard.GetUniqueVisitors();
+            return guard.GetUniqueGuards();
         }
         [HttpPut]
         [Route("api/[controller]/UniqueGuardByName")]
         public List<Guard> GetGuardByName([FromBody]SearchFilter searchInput)
         {
-            return guard.GetUniqueVisitorsByName(searchInput.UserInput);
+            return guard.GetUniqueGuardsByName(searchInput.UserInput);
         }
         [HttpPut]
         [Route("api/[controller]/EditGuard")]
@@ -56,11 +56,9 @@ namespace DALCore.Controllers
         [Route("api/[controller]/AddGuard")]
         public bool AddNewGuard([FromBody]Guard NewGuard)
         {
-            if (guard.AddGuard(NewGuard))
-                return true;
-            return false;
+            return guard.AddGuard(NewGuard);
         }
-        [HttpDelete]
+        [HttpPut]
         [Route("api/[controller]/RemoveGuard")]
         public void RemoveGuard([FromBody]SearchFilter searchInput)
         {
@@ -71,6 +69,18 @@ namespace DALCore.Controllers
         public Guard GetGuardById([FromBody]SearchFilter userId)
         {
             return guard.GetGuardDetailsById(userId.UserInput);
+        }
+        [HttpPost]
+        [Route("api/[controller]/AddGuardLogin")]
+        public string GuardLogin([FromBody]SearchFilter userId)
+        {
+            return guard.AddGuardLogAtLogin(userId.UserInput);
+        }
+        [HttpPut]
+        [Route("api/[controller]/AddGuardLogOut")]
+        public string GuardLogOut([FromBody]SearchFilter userId)
+        {
+            return guard.EditGuardLogAtLogOut(userId.UserInput);
         }
     }
 }

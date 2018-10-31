@@ -2783,6 +2783,22 @@
           "bin/placeholder/Core.Contracts.dll": {}
         }
       },
+      "FaceService/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
+          "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4"
+        },
+        "compile": {
+          "bin/placeholder/FaceService.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FaceService.dll": {}
+        }
+      },
       "SQLDatabase/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
@@ -9258,6 +9274,11 @@
       "path": "../Core.Contracts/Core.Contracts.csproj",
       "msbuildProject": "../Core.Contracts/Core.Contracts.csproj"
     },
+    "FaceService/1.0.0": {
+      "type": "project",
+      "path": "../FaceService/FaceService.csproj",
+      "msbuildProject": "../FaceService/FaceService.csproj"
+    },
     "SQLDatabase/1.0.0": {
       "type": "project",
       "path": "../SQLDatabase/SQLDatabase.csproj",
@@ -9275,6 +9296,7 @@
       "AWSSDK.Rekognition >= 3.3.11.10",
       "Core.Contracts >= 1.0.0",
       "EPPlus.Core >= 1.5.4",
+      "FaceService >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.1.4",
       "Microsoft.NETCore.App >= 2.1.0",
       "SQLDatabase >= 1.0.0",
@@ -9319,6 +9341,9 @@
           "projectReferences": {
             "C:\\Users\\asharma\\Desktop\\WorkingFilters\\DALCore\\SQLDatabase\\SQLDatabase.csproj": {
               "projectPath": "C:\\Users\\asharma\\Desktop\\WorkingFilters\\DALCore\\SQLDatabase\\SQLDatabase.csproj"
+            },
+            "C:\\Users\\asharma\\Desktop\\WorkingFilters\\DALCore\\FaceService\\FaceService.csproj": {
+              "projectPath": "C:\\Users\\asharma\\Desktop\\WorkingFilters\\DALCore\\FaceService\\FaceService.csproj"
             },
             "C:\\Users\\asharma\\Desktop\\WorkingFilters\\DALCore\\AdminService\\UserService.csproj": {
               "projectPath": "C:\\Users\\asharma\\Desktop\\WorkingFilters\\DALCore\\AdminService\\UserService.csproj"

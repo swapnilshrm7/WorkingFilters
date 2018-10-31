@@ -92,8 +92,9 @@ namespace EmployeeService
             NewLog.EmployeeId = EmployeeId;
             NewLog.EmployeeName = EmployeeName;
             NewLog.DateOfVisit = DateTime.Today;
-            NewLog.TimeOfEntry = DateTime.Now;
+            NewLog.TimeOfEntry = DateTime.Now.TimeOfDay;
             entity.EmployeeLogs.Add(NewLog);
+            entity.SaveChanges();
         }
         public List<EmployeeLogs> GetEmployeeLogByName(string EmployeeName)
         {

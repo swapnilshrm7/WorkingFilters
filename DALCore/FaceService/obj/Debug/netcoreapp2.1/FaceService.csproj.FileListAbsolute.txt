@@ -7,3 +7,5 @@ C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp
 C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\bin\Debug\netcoreapp2.1\FaceService.pdb
 C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp2.1\FaceService.dll
 C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\obj\Debug\netcoreapp2.1\FaceService.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\bin\Debug\netcoreapp2.1\Core.Contracts.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\FaceService\bin\Debug\netcoreapp2.1\Core.Contracts.pdb

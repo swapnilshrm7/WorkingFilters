@@ -24,13 +24,13 @@ namespace DALCore.Controllers
             return visitor.GetAllVisitorsFromLog();
         }
         [HttpPut]
-        [Route("api/[controller]/ByName")]
+        [Route("api/[controller]/LogsByName")]
         public List<VisitorsData> GetVisitorsLogByName([FromBody]SearchFilter Name)
         {
             return visitor.GetVisitorsLogByName(Name.UserInput);
         }
         [HttpPut]
-        [Route("api/[controller]/ByMeetingPerson")]
+        [Route("api/[controller]/LogsByMeetingPerson")]
         public List<VisitorsData> GetVisitorLogByMeetingPerson([FromBody]SearchFilter MeetingPerson)
         {
             return visitor.GetVisitorsLogByMeetingPerson(MeetingPerson.UserInput);
@@ -53,7 +53,7 @@ namespace DALCore.Controllers
         {
             return visitor.GetVisitorLogByNameAndDate(UserInput.nameOfVisitor,UserInput.fromDate, UserInput.toDate, UserInput.fromTime, UserInput.toTime);
         }
-        [HttpPut]
+        [HttpGet]
         [Route("api/[controller]/UniqueVisitors")]
         public List<Visitors> GetAllVisitors()
         {
@@ -67,9 +67,9 @@ namespace DALCore.Controllers
         }
         [HttpPost]
         [Route("api/[controller]/AddNewVisitor")]
-        public void NewVisitorEntry([FromBody]NewVisitorFormData newVisitor)
+        public string NewVisitorEntry([FromBody]NewVisitorFormData newVisitor)
         {
-            visitor.AddNewVisitor(newVisitor);
+            return visitor.AddNewVisitor(newVisitor);
         }
         [HttpPut]
         [Route("api/[controller]/EmployeesMatchingSubstring")]
@@ -93,9 +93,8 @@ namespace DALCore.Controllers
         [HttpPut]
         [Route("api/[controller]/SaveExitTime")]
         public string SavingExitTime([FromBody]UserId Id)
-        {
-            visitor.SaveVisitorExitTime(Id.userId);
-            return "Exit time recorded!";
+        {           
+            return visitor.SaveVisitorExitTime(Id.userId);
         }
     }
 }

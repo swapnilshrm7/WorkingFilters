@@ -18,5 +18,6 @@ namespace Core.Contracts
         public string TimeOut { get; set; }
         public int VisitorId { get; set; }
         public string GuardId { get; set; }
+        public string PurposeOfVisit { get; set; }
     }
 }

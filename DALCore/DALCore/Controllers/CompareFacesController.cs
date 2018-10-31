@@ -30,7 +30,7 @@ namespace DALCore.Controllers
         }
         [Microsoft.AspNetCore.Mvc.HttpGet]
         [Microsoft.AspNetCore.Mvc.Route("api/Guard")]
-        public async System.Threading.Tasks.Task<bool> CompareFacesAsync()
+        public async System.Threading.Tasks.Task<string> CompareFacesAsync()
         {
             GlobalConfiguration.Configuration.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
             ForgotPasswordManager obj = new ForgotPasswordManager();
@@ -40,10 +40,11 @@ namespace DALCore.Controllers
             }
             catch (Exception exception)
             {
-                return false;
+                return "Error";
             }
         }
-
+        [Microsoft.AspNetCore.Mvc.HttpPut]
+        [Microsoft.AspNetCore.Mvc.Route("api/GuardPut")]
         public void AddANewFace()
         {
             FaceManager faceManager = new FaceManager();

@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AdminService\UserService.csproj" />
     <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj" />
+    <ProjectReference Include="..\FaceService\FaceService.csproj" />
     <ProjectReference Include="..\SQLDatabase\SQLDatabase.csproj" />
   </ItemGroup>
 

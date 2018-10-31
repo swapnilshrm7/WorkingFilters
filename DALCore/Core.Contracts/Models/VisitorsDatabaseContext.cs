@@ -50,7 +50,7 @@ namespace DALCore.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TimeOfEntry).HasColumnType("datetime");
+                entity.Property(e => e.TimeOfEntry).HasColumnType("time");
             });
 
             modelBuilder.Entity<Employees>(entity =>
@@ -217,11 +217,6 @@ namespace DALCore.Models
                 entity.Property(e => e.GuardId)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuardPassword)
-                    .IsRequired()
-                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LoginDate).HasColumnType("date");

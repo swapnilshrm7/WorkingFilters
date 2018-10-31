@@ -11,11 +11,13 @@ namespace GuardService
         List<GuardData> GetAllGuardsFromLog();
         List<GuardData> GetGuardsLogByName(string searchInput);
         List<GuardData> GetGuardLogByDateAndTime(string fromDate, string toDate, string fromTime, string toTime);
-        List<Guard> GetUniqueVisitors();
-        List<Guard> GetUniqueVisitorsByName(string searchInput);
-        void DeleteGuard(string GuardId);
+        List<Guard> GetUniqueGuards();
+        List<Guard> GetUniqueGuardsByName(string searchInput);
+        bool DeleteGuard(string GuardId);
         bool AddGuard(Guard NewGuard);
         bool EditExistingGuard(Guard details);
         Guard GetGuardDetailsById(string GuardId);
+        string AddGuardLogAtLogin(string GuardId);
+        string EditGuardLogAtLogOut(string GuardId);
     }
 }

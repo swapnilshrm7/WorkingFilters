@@ -1863,6 +1863,7 @@
         "dependencies": {
           "AWSSDK.Core": "3.3.29.2",
           "AWSSDK.Rekognition": "3.3.11.10",
+          "Core.Contracts": "1.0.0",
           "EPPlus.Core": "1.5.4"
         },
         "runtime": {
@@ -1942,6 +1943,7 @@
           "AWSSDK.Rekognition": "3.3.11.10",
           "Core.Contracts": "1.0.0",
           "EPPlus.Core": "1.5.4",
+          "FaceService": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
           "SQLDatabase": "1.0.0",
           "System.Security.Cryptography.Algorithms": "4.3.1",

@@ -12,20 +12,9 @@ namespace Core.Contracts
         public string EmailId { get; set; }
         public string GuardStatus { get; set; }
         public string Gender { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string LocalAddress { get; set; }
-        public string PermanentAddress { get; set; }
-        public string EmergencyContactPerson { get; set; }
-        public string EmergencyContactNumber { get; set; }
         public string PrimaryContactNumber { get; set; }
-        public string SecondaryContactNumber { get; set; }
-        public DateTime DateOfJoining { get; set; }
-        public DateTime DateOfResignation { get; set; }
-        public string Remark { get; set; }
-        public string BloodGroup { get; set; }
         public string MedicalSpecification { get; set; }
         public int SerialNumber { get; set; } 
-        public string GuardPassword { get; set; }
         public TimeSpan LoginTime { get; set; }
         public TimeSpan LogoutTime { get; set; }
         public DateTime LoginDate { get; set; }

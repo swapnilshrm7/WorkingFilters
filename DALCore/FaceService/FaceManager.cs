@@ -1,5 +1,6 @@
 ﻿using Amazon.Rekognition;
 using Amazon.Rekognition.Model;
+using DALCore.Models;
 using System;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace FaceService
 {
     public class FaceManager : IFace
     {
-        public async System.Threading.Tasks.Task<bool> CompareFacesAsync()
+        public async System.Threading.Tasks.Task<string> CompareFacesAsync()
         {
             try
             {
@@ -27,13 +28,17 @@ namespace FaceService
                     MaxFaces = 5
                 });
                 if (response.FaceMatches.Any())
-                    return true;
+                {
+                    int imageId = Convert.ToInt32(response.FaceMatches[0].Face.ExternalImageId);
+                    return GetVisitorNameById(imageId);
+                }
+                    
                 else
-                    return false;
+                    return "No Match Found";
             }
             catch (Exception exception)
             {
-                return false;
+                return "Error";
             }
         }
 
@@ -53,7 +58,19 @@ namespace FaceService
                     }
                 }
             });
-
+        }
+        public string GetVisitorNameById(int Id)
+        {
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                Visitors Visitor = entity.Visitors.Where(entry => entry.VisitorId == Id).FirstOrDefault();
+                return Visitor.NameOfVisitor;
+            }
+            catch (Exception ex)
+            {
+                return "Unable to fetch name";
+            }
         }
     }
 }

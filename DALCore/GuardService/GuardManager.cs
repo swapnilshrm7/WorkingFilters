@@ -39,24 +39,13 @@ namespace GuardService
                 GuardData guardEntry = new GuardData();
                 guardEntry.GuardId = guard.GuardId;
                 guardEntry.SerialNumber = guard.SerialNumber;
-                guardEntry.GuardPassword = guard.GuardPassword;
                 guardEntry.LoginTime = guard.LoginTime;
                 guardEntry.LogoutTime = guard.LogoutTime;
                 guardEntry.GuardName = guardData.GuardName;
                 guardEntry.EmailId = guardData.EmailId;
                 guardEntry.GuardStatus = guardData.GuardStatus;
                 guardEntry.Gender = guardData.Gender;
-                guardEntry.DateOfBirth = guardData.DateOfBirth;
-                guardEntry.LocalAddress = guardData.LocalAddress;
-                guardEntry.PermanentAddress = guardData.PermanentAddress;
-                guardEntry.EmergencyContactPerson = guardData.EmergencyContactPerson;
-                guardEntry.EmergencyContactNumber = guardData.EmergencyContactNumber;
                 guardEntry.PrimaryContactNumber = guardData.PrimaryContactNumber;
-                guardEntry.SecondaryContactNumber = guardData.SecondaryContactNumber;
-                guardEntry.DateOfJoining = guardData.DateOfJoining;
-                guardEntry.DateOfResignation = guardData.DateOfResignation;
-                guardEntry.Remark = guardData.Remark;
-                guardEntry.BloodGroup = guardData.BloodGroup;
                 guardEntry.MedicalSpecification = guardData.MedicalSpecification;
                 guardEntry.LoginDate = guard.LoginDate;
                 guardEntry.LogoutDate = guard.LogoutDate;
@@ -99,26 +88,13 @@ namespace GuardService
                     guardEntry.EmailId = guard.EmailId;
                     guardEntry.GuardStatus = guard.GuardStatus;
                     guardEntry.Gender = guard.Gender;
-                    guardEntry.DateOfBirth = guard.DateOfBirth;
-                    guardEntry.LocalAddress = guard.LocalAddress;
-                    guardEntry.PermanentAddress = guard.PermanentAddress;
-                    guardEntry.EmergencyContactNumber = guard.EmergencyContactNumber;
-                    guardEntry.EmergencyContactPerson = guard.EmergencyContactPerson;
                     guardEntry.PrimaryContactNumber = guard.PrimaryContactNumber;
-                    guardEntry.DateOfJoining = guard.DateOfJoining;
-                    guardEntry.Remark = guard.Remark;
-                    guardEntry.BloodGroup = guard.BloodGroup;
                     guardEntry.MedicalSpecification = guard.MedicalSpecification;
                     guardEntry.SerialNumber = result.SerialNumber;
                     guardEntry.LoginTime = result.LoginTime;
                     guardEntry.LogoutTime = result.LogoutTime;
                     guardEntry.LoginDate = result.LoginDate;
                     guardEntry.LogoutDate = result.LogoutDate;
-
-                    if (guard.GuardStatus.Equals("Active"))
-                    {
-                        guardEntry.DateOfResignation = guard.DateOfResignation;
-                    }
                     allLogs.Add(guardEntry);
                 }
             }
@@ -153,7 +129,7 @@ namespace GuardService
                 throw new Exception("Could not get Guards From Log. Please try again" + ex.StackTrace);
             }
         }
-        public List<Guard> GetUniqueVisitors()
+        public List<Guard> GetUniqueGuards()
         {
             try
             {
@@ -188,7 +164,7 @@ namespace GuardService
                 throw new Exception("Could not get Visitors. Please try again" + ex.StackTrace);
             }
         }
-        public List<Guard> GetUniqueVisitorsByName(string searchInput)
+        public List<Guard> GetUniqueGuardsByName(string searchInput)
         {
             try
             {
@@ -223,7 +199,7 @@ namespace GuardService
                 throw new Exception("Could not get Visitors. Please try again" + ex.StackTrace);
             }
         }
-        public void DeleteGuard(string GuardId)
+        public bool DeleteGuard(string GuardId)
         {
             try
             {
@@ -231,10 +207,11 @@ namespace GuardService
                 var GuardDetails = entity.Guard.Find(GuardId);
                 GuardDetails.GuardStatus = "INACTIVE";
                 entity.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not delete Guard. Please try again" + ex.StackTrace);
+                return false;
             }
         }
         public bool AddGuard(Guard NewGuard)
@@ -307,6 +284,41 @@ namespace GuardService
             var entity = new VisitorsDatabaseContext();
             Guard GuardDetails = entity.Guard.Find(GuardId);
             return GuardDetails;
+        }
+        public string AddGuardLogAtLogin(string GuardId)
+        {
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                GuardLogs NewLog = new GuardLogs();
+                NewLog.GuardId = GuardId;
+                NewLog.LoginDate = DateTime.Today;
+                NewLog.LoginTime = DateTime.Now.TimeOfDay;
+                entity.GuardLogs.Add(NewLog);
+                entity.SaveChanges();
+                return "Logged Successfully";
+            }
+            catch(Exception ex)
+            {
+                return "Unable to Log Guard Activity";
+            }
+        }
+        public string EditGuardLogAtLogOut(string GuardId)
+        {
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                string time = "00:00:00.0000000";
+                GuardLogs ExistingLog = entity.GuardLogs.Where(entry => entry.LogoutTime == Convert.ToDateTime(time).TimeOfDay && entry.GuardId==GuardId).FirstOrDefault();
+                ExistingLog.LogoutTime = DateTime.Now.TimeOfDay;
+                ExistingLog.LogoutDate = DateTime.Today;
+                entity.SaveChanges();
+                return "Logged Successfully";
+            }
+            catch(Exception ex)
+            {
+                return "Unable to Log Guard Activity";
+            }
         }
         public void ClearList()
         {

@@ -8,6 +8,7 @@ using DALCore.Models;
 using Microsoft.EntityFrameworkCore;
 using UserService;
 using SQLDatabase;
+using FaceService;
 
 namespace VisitorService
 {
@@ -20,8 +21,8 @@ namespace VisitorService
             try
             {
                 ClearList();
-                VisitorDatabase visitorDatabase = new VisitorDatabase();
-                List<VisitorsLogs> visitorLogsList = visitorDatabase.GetAllVisitorLogs();
+                var entity = new VisitorsDatabaseContext();
+                List<VisitorsLogs> visitorLogsList = entity.VisitorsLogs.ToList<VisitorsLogs>();
                 foreach (var entry in visitorLogsList)
                 {
                     GetVisitorData(entry);
@@ -51,6 +52,7 @@ namespace VisitorService
                 entry.VisitorId = visitor.VisitorId;
                 entry.GuardId = visitor.GuardId;
                 entry.DateOfVisit = visitor.DateOfVisit.ToString();
+                entry.PurposeOfVisit = visitor.PurposeOfVisit;
                 AllLogs.Add(entry);
             }
             catch (Exception ex)
@@ -63,10 +65,8 @@ namespace VisitorService
             try
             {
                 ClearList();
-                //var entity = new VisitorsDatabaseContext();
-                //List<Visitors> visitorLogsList = entity.Visitors.FromSql("select * from Visitors where NameOfVisitor = @searchInput", new SqlParameter("@searchInput", searchInput)).ToList<Visitors>();
-                VisitorDatabase visitorDatabase = new VisitorDatabase();
-                List<Visitors> visitorLogsList = visitorDatabase.GetVisitorsByName(searchInput);
+                var entity = new VisitorsDatabaseContext();
+                List<Visitors> visitorLogsList = entity.Visitors.Where(entry => entry.NameOfVisitor == searchInput).ToList<Visitors>();
                 foreach (var entry in visitorLogsList)
                 {
                     GetVisitorDataByName(entry);
@@ -82,10 +82,8 @@ namespace VisitorService
         {
             try
             {
-                //var entity = new VisitorsDatabaseContext();
-                //List<VisitorsLogs> visitorData = entity.VisitorsLogs.FromSql("select * from VisitorsLogs where VisitorId = @searchInput", new SqlParameter("@searchInput", visitor.VisitorId)).ToList<VisitorsLogs>();
-                VisitorDatabase visitorDatabase = new VisitorDatabase();
-                List<VisitorsLogs> visitorData = visitorDatabase.GetVisitorLogsById(visitor.VisitorId);
+                var entity = new VisitorsDatabaseContext();
+                List<VisitorsLogs> visitorData = entity.VisitorsLogs.Where(entry => entry.VisitorId == visitor.VisitorId).ToList<VisitorsLogs>();
                 foreach (var result in visitorData)
                 {
                     VisitorsData entry = new VisitorsData();
@@ -100,6 +98,7 @@ namespace VisitorService
                     entry.VisitorId = result.VisitorId;
                     entry.GuardId = result.GuardId;
                     entry.DateOfVisit = result.DateOfVisit.ToString();
+                    entry.PurposeOfVisit = result.PurposeOfVisit;
                     AllLogs.Add(entry);
                 }
             }
@@ -113,10 +112,8 @@ namespace VisitorService
             try
             {
                 ClearList();
-                //var entity = new VisitorsDatabaseContext();
-                //List<VisitorsLogs> visitorLogsList = entity.VisitorsLogs.FromSql("select * from VisitorsLogs where WhomToMeet = @searchInput", new SqlParameter("@searchInput", SearchInput)).ToList<VisitorsLogs>();
-                VisitorDatabase visitorDatabase = new VisitorDatabase();
-                List<VisitorsLogs> visitorLogsList = visitorDatabase.GetVisitorLogsByWhomToMeet(whomToMeet);
+                var entity = new VisitorsDatabaseContext();
+                List<VisitorsLogs> visitorLogsList = entity.VisitorsLogs.Where(entry => entry.WhomToMeet == whomToMeet).ToList<VisitorsLogs>();
                 foreach (var entry in visitorLogsList)
                 {
                     GetVisitorDataByMeetingPerson(entry, whomToMeet);
@@ -132,12 +129,8 @@ namespace VisitorService
         {
             try
             {
-                //var entity = new VisitorsDatabaseContext();
-                //Visitors visitorData = entity.Visitors.FromSql("select * from Visitors where VisitorId = @searchInput", new SqlParameter("@searchInput", visitor.VisitorId)).SingleOrDefault();
-                VisitorDatabase visitorDatabase = new VisitorDatabase();
-                Visitors visitorData = visitorDatabase.GetVisitorById(visitor.VisitorId);
-                //foreach (var result in visitorData)
-                //{
+                var entity = new VisitorsDatabaseContext();
+                Visitors visitorData = entity.Visitors.Where(row => row.VisitorId == visitor.VisitorId).FirstOrDefault();                
                     VisitorsData entry = new VisitorsData();
                     entry.NameOfVisitor = visitorData.NameOfVisitor;
                     entry.GovtIdProof = visitorData.GovtIdProof;
@@ -150,8 +143,8 @@ namespace VisitorService
                     entry.VisitorId = visitor.VisitorId;
                     entry.DateOfVisit = visitor.DateOfVisit.ToString();
                     entry.GuardId = visitor.GuardId;
+                entry.PurposeOfVisit = visitor.PurposeOfVisit;
                     AllLogs.Add(entry);
-                //}
             }
             catch (Exception ex)
             {
@@ -188,7 +181,7 @@ namespace VisitorService
             {
                 ClearList();
                 var entity = new VisitorsDatabaseContext();
-                List<VisitorsLogs> visitorLogsList = entity.VisitorsLogs.FromSql("select * from VisitorsLogs where PurposeOfVisit = @purpose", new SqlParameter("@purpose", searchInput)).ToList<VisitorsLogs>();
+                List<VisitorsLogs> visitorLogsList = entity.VisitorsLogs.Where(entry => entry.PurposeOfVisit == searchInput).ToList<VisitorsLogs>();
                 foreach (var entry in visitorLogsList)
                 {
                     GetVisitorData(entry);
@@ -262,32 +255,52 @@ namespace VisitorService
                 throw new Exception("Could not get Visitors. Please try again" + ex.StackTrace);
             }
         }
-        public void AddNewVisitor(NewVisitorFormData newVisitorData)
+        public string AddNewVisitor(NewVisitorFormData newVisitorData)
         {
-            var entity = new VisitorsDatabaseContext();
-            Visitors NewVisitor = new Visitors();
-            NewVisitor.NameOfVisitor = newVisitorData.nameOfVisitor;
-            NewVisitor.Contact = newVisitorData.contactNo;
-            NewVisitor.VisitorImage = "image"; // Call add new face from here, leaving for now
-            NewVisitor.GovtIdProof = newVisitorData.govtIdProof;
-            AddNewVisitorLog(newVisitorData);
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                Visitors NewVisitor = new Visitors();
+                NewVisitor.NameOfVisitor = newVisitorData.nameOfVisitor;
+                NewVisitor.Contact = newVisitorData.contactNo;
+                NewVisitor.VisitorImage = "bucketadress/id"; // Call add new face from here, leaving for now
+                NewVisitor.GovtIdProof = newVisitorData.govtIdProof;
+                entity.Visitors.Add(NewVisitor);
+                entity.SaveChanges();
+                Visitors newVisitor = entity.Visitors.Where(entry => entry.NameOfVisitor == newVisitorData.nameOfVisitor && entry.Contact == newVisitorData.contactNo).FirstOrDefault();
+                FaceManager faceManager = new FaceManager();
+                faceManager.AddANewFace(newVisitor.VisitorId.ToString());
+                AddNewVisitorLog(newVisitorData);
+                return "visitor added successfully";
+            }
+            catch(Exception ex)
+            {
+                return "unable to add visitor";
+            }
         }
         public void AddNewVisitorLog(NewVisitorFormData VisitorData)
         {
-            var entity = new VisitorsDatabaseContext();
-            List<Visitors> visitorEntry = entity.Visitors.Where(entry => entry.NameOfVisitor == VisitorData.nameOfVisitor).ToList<Visitors>();
-            List<Employees> empEntry = entity.Employees.Where(entry => entry.EmployeeName == VisitorData.whomToMeet).ToList<Employees>();
-            VisitorsLogs newLog = new VisitorsLogs();
-            newLog.ComingFrom = VisitorData.comingFrom;
-            newLog.WhomToMeet = VisitorData.whomToMeet;
-            newLog.EmployeeId = empEntry[0].EmployeeId;
-            newLog.DateOfVisit = DateTime.Today;
-            newLog.TimeIn = DateTime.Now.TimeOfDay;
-            newLog.VisitorId = visitorEntry[0].VisitorId;
-            newLog.GuardId = VisitorData.guardId;
-            newLog.PurposeOfVisit = VisitorData.purposeOfVisit;
-            entity.VisitorsLogs.Add(newLog);
-            entity.SaveChanges();
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                List<Visitors> visitorEntry = entity.Visitors.Where(entry => entry.NameOfVisitor == VisitorData.nameOfVisitor).ToList<Visitors>();
+                List<Employees> empEntry = entity.Employees.Where(entry => entry.EmployeeName == VisitorData.whomToMeet).ToList<Employees>();
+                VisitorsLogs newLog = new VisitorsLogs();
+                newLog.ComingFrom = VisitorData.comingFrom;
+                newLog.WhomToMeet = VisitorData.whomToMeet;
+                newLog.EmployeeId = empEntry[0].EmployeeId;
+                newLog.DateOfVisit = DateTime.Today;
+                newLog.TimeIn = DateTime.Now.TimeOfDay;
+                newLog.VisitorId = visitorEntry[0].VisitorId;
+                newLog.GuardId = VisitorData.guardId;
+                newLog.PurposeOfVisit = VisitorData.purposeOfVisit;
+                entity.VisitorsLogs.Add(newLog);
+                entity.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Could not Add visitor. Please try again" + ex.StackTrace);
+            }
         }
         public List<MatchingSubstring> AllMatchingEmployeeNames(string userInput)
         {
@@ -318,16 +331,31 @@ namespace VisitorService
         }
         public string GetVisitorNameById(int Id)
         {
-            var entity = new VisitorsDatabaseContext();
-            Visitors Visitor = entity.Visitors.Where(entry => entry.VisitorId == Id).FirstOrDefault();
-            return Visitor.NameOfVisitor;
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                Visitors Visitor = entity.Visitors.Where(entry => entry.VisitorId == Id).FirstOrDefault();
+                return Visitor.NameOfVisitor;
+            }
+            catch(Exception ex)
+            {
+                return "Unable to fetch name";
+            }
         }
-        public void SaveVisitorExitTime(int Id)
+        public string SaveVisitorExitTime(int Id)
         {
-            var entity = new VisitorsDatabaseContext();
-            VisitorsLogs ExistingLog = entity.VisitorsLogs.Where(entry => entry.VisitorId == Id).FirstOrDefault();
-            ExistingLog.TimeOut = DateTime.Now.TimeOfDay;
-            entity.SaveChanges();
+            try
+            {
+                var entity = new VisitorsDatabaseContext();
+                VisitorsLogs ExistingLog = entity.VisitorsLogs.Where(entry => entry.VisitorId == Id).FirstOrDefault();
+                ExistingLog.TimeOut = DateTime.Now.TimeOfDay;
+                entity.SaveChanges();
+                return "Exit Time Recorded";
+            }
+            catch(Exception ex)
+            {
+                return "Unable to record exit time";
+            }
         }
         public void ClearList()
         {

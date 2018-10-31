@@ -6,7 +6,7 @@ namespace FaceService
 {
     public interface IFace
     {
-        System.Threading.Tasks.Task<bool> CompareFacesAsync();
+        System.Threading.Tasks.Task<string> CompareFacesAsync();
         void AddANewFace(string imageId);
     }
 }

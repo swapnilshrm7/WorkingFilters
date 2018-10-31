@@ -12,6 +12,7 @@
           "AWSSDK.Rekognition": "3.3.11.10",
           "Core.Contracts": "1.0.0",
           "EPPlus.Core": "1.5.4",
+          "FaceService": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
           "SQLDatabase": "1.0.0",
           "System.Security.Cryptography.Algorithms": "4.3.1",
@@ -1947,6 +1948,17 @@
           "Core.Contracts.dll": {}
         }
       },
+      "FaceService/1.0.0": {
+        "dependencies": {
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
+          "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4"
+        },
+        "runtime": {
+          "FaceService.dll": {}
+        }
+      },
       "SQLDatabase/1.0.0": {
         "dependencies": {
           "AWSSDK.Core": "3.3.29.2",
@@ -3236,6 +3248,11 @@
       "hashPath": "twilio.5.20.1.nupkg.sha512"
     },
     "Core.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FaceService/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -43,3 +43,5 @@ C:\Users\asharma\Desktop\WorkingFilters\DALCore\VisitorService\obj\Debug\netcore
 C:\Users\asharma\Desktop\WorkingFilters\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.AssemblyInfo.cs
 C:\Users\asharma\Desktop\WorkingFilters\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.dll
 C:\Users\asharma\Desktop\WorkingFilters\DALCore\VisitorService\obj\Debug\netcoreapp2.1\VisitorService.pdb
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\VisitorService\bin\Debug\netcoreapp2.1\FaceService.dll
+C:\Users\asharma\Desktop\WorkingFilters\DALCore\VisitorService\bin\Debug\netcoreapp2.1\FaceService.pdb
