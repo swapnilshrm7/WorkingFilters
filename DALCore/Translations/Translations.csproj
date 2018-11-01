@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>Translations</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj" />
+    <ProjectReference Include="..\EmployeeData\UI.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

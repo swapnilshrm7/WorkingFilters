@@ -6,9 +6,9 @@ namespace SQLDatabase
 {
     public class UserDatabase
     {
-        public VisitorsDatabaseContext GetConnection()
+        public DatabaseContext GetConnection()
         {
-            return new VisitorsDatabaseContext();
+            return new DatabaseContext();
         }
         public LoginCredentials GetLoginCredentialsByUserId(string userId)
         {

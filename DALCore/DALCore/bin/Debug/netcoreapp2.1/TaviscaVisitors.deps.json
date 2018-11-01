@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "ef399acaf02c196af6e380fc203938037f15f359"
+    "signature": "ba81a22b421a1711634ce58d3a852e153b613167"
   },
   "compilationOptions": {
     "defines": [
@@ -24,12 +24,16 @@
     ".NETCoreApp,Version=v2.1": {
       "TaviscaVisitors/1.0.0": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.28.1",
-          "AWSSDK.Rekognition": "3.3.11.7",
+          "AWSSDK.Core": "3.3.29.2",
           "AWSSDK.S3": "3.3.26.1",
+          "AdminsService": "1.0.0",
           "Amazon.S3": "0.11.5",
+          "AutoMapper": "7.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "5.0.1",
           "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
           "EmployeeService": "1.0.0",
+          "FaceService": "1.0.0",
           "FirebaseAdmin": "1.0.0",
           "FirebaseStorage.net": "1.0.2",
           "FirebaseTokenGenerator": "2.0.0",
@@ -90,7 +94,36 @@
           "lib/netstandard2.0/Amazon.S3.dll": {}
         }
       },
-      "AWSSDK.Core/3.3.28.1": {
+      "AutoMapper/7.0.1": {
+        "dependencies": {
+          "System.ValueTuple": "4.5.0"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/AutoMapper.dll": {
+            "assemblyVersion": "7.0.1.0",
+            "fileVersion": "7.0.1.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.0/AutoMapper.dll": {}
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/5.0.1": {
+        "dependencies": {
+          "AutoMapper": "7.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "5.0.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.3.29.2": {
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
           "System.Net.Requests": "4.0.11",
@@ -101,21 +134,21 @@
         "runtime": {
           "lib/netstandard1.3/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.3.28.1"
+            "fileVersion": "3.3.29.2"
           }
         },
         "compile": {
           "lib/netstandard1.3/AWSSDK.Core.dll": {}
         }
       },
-      "AWSSDK.Rekognition/3.3.11.7": {
+      "AWSSDK.Rekognition/3.3.11.10": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.28.1"
+          "AWSSDK.Core": "3.3.29.2"
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.Rekognition.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.3.11.7"
+            "fileVersion": "3.3.11.10"
           }
         },
         "compile": {
@@ -124,7 +157,7 @@
       },
       "AWSSDK.S3/3.3.26.1": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.28.1"
+          "AWSSDK.Core": "3.3.29.2"
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.S3.dll": {
@@ -197,6 +230,32 @@
         },
         "compile": {
           "lib/net45/EntityFramework.dll": {}
+        }
+      },
+      "EPPlus.Core/1.5.4": {
+        "dependencies": {
+          "System.Collections.NonGeneric": "4.3.0",
+          "System.Data.Common": "4.3.0",
+          "System.Data.SqlClient": "4.5.1",
+          "System.Drawing.Common": "4.5.0-preview1-25914-04",
+          "System.Reflection": "4.3.0",
+          "System.Security.Claims": "4.3.0",
+          "System.Security.Cryptography.Pkcs": "4.5.0",
+          "System.Security.Cryptography.X509Certificates": "4.3.2",
+          "System.Text.Encoding.CodePages": "4.5.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.ThreadPool": "4.3.0",
+          "System.Xml.XPath.XmlDocument": "4.3.0",
+          "System.Xml.XmlDocument": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/EPPlus.Core.dll": {
+            "assemblyVersion": "1.5.4.0",
+            "fileVersion": "1.5.4.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/EPPlus.Core.dll": {}
         }
       },
       "Firebase.js/2.1.2": {},
@@ -635,7 +694,7 @@
           "System.Security.Cryptography.Algorithms": "4.3.1",
           "System.Threading": "4.3.0",
           "System.Threading.Tasks": "4.3.0",
-          "System.Threading.ThreadPool": "4.0.10",
+          "System.Threading.ThreadPool": "4.3.0",
           "System.Threading.Timer": "4.0.1"
         },
         "runtime": {
@@ -1290,6 +1349,18 @@
           "lib/netstandard1.0/System.Composition.TypedParts.dll": {}
         }
       },
+      "System.Data.Common/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        }
+      },
       "System.Data.Entity.Repository/2.0.0.1": {
         "dependencies": {
           "EntityFramework": "5.0.0"
@@ -1313,6 +1384,34 @@
         },
         "compile": {
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
+        }
+      },
+      "System.Drawing.Common/4.5.0-preview1-25914-04": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25914.4"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25914.4"
+          },
+          "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25914.4"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Drawing.Common.dll": {}
         }
       },
       "System.Globalization.Calendars/4.3.0": {
@@ -1466,7 +1565,7 @@
           "System.Dynamic.Runtime": "4.3.0",
           "System.Reactive.Interfaces": "3.1.1",
           "System.Threading.Thread": "4.3.0",
-          "System.Threading.ThreadPool": "4.0.10"
+          "System.Threading.ThreadPool": "4.3.0"
         },
         "runtime": {
           "lib/netcoreapp1.0/System.Reactive.Core.dll": {
@@ -1684,7 +1783,7 @@
           }
         }
       },
-      "System.Threading.ThreadPool/4.0.10": {
+      "System.Threading.ThreadPool/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0",
           "System.Runtime.Handles": "4.3.0"
@@ -1697,6 +1796,7 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.ValueTuple/4.5.0": {},
       "System.Web.Http.Common/4.0.20126.16343": {
         "runtime": {
           "lib/net40/System.Web.Http.Common.dll": {
@@ -1716,6 +1816,29 @@
       "System.Web.Providers.Core/1.1.0": {
         "dependencies": {
           "Microsoft.AspNet.Providers.Core": "1.0.0"
+        }
+      },
+      "System.Xml.XPath.XmlDocument/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0",
+          "System.Xml.XPath": "4.3.0",
+          "System.Xml.XmlDocument": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.24705.1"
+          }
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
       "SystemWebPackage/1.0.0": {},
@@ -1738,8 +1861,28 @@
           "lib/netstandard1.4/Twilio.dll": {}
         }
       },
+      "AdminsService/1.0.0": {
+        "dependencies": {
+          "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
+          "EmployeeService": "1.0.0",
+          "GuardService": "1.0.0",
+          "Translations": "1.0.0",
+          "UI.Entities": "1.0.0",
+          "VisitorService": "1.0.0"
+        },
+        "runtime": {
+          "AdminsService.dll": {}
+        },
+        "compile": {
+          "AdminsService.dll": {}
+        }
+      },
       "Core.Contracts/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
+          "EPPlus.Core": "1.5.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
           "System.Security.Cryptography.Algorithms": "4.3.1",
           "System.Security.Cryptography.ProtectedData": "4.5.0",
@@ -1754,7 +1897,12 @@
       },
       "EmployeeService/1.0.0": {
         "dependencies": {
-          "Core.Contracts": "1.0.0"
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
+          "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
+          "Translations": "1.0.0",
+          "UI.Entities": "1.0.0"
         },
         "runtime": {
           "EmployeeService.dll": {}
@@ -1763,12 +1911,31 @@
           "EmployeeService.dll": {}
         }
       },
+      "FaceService/1.0.0": {
+        "dependencies": {
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
+          "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4"
+        },
+        "runtime": {
+          "FaceService.dll": {}
+        },
+        "compile": {
+          "FaceService.dll": {}
+        }
+      },
       "GuardService/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
           "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
           "System.Security.Cryptography.Algorithms": "4.3.1",
           "System.Security.Cryptography.ProtectedData": "4.5.0",
-          "System.Security.Cryptography.X509Certificates": "4.3.2"
+          "System.Security.Cryptography.X509Certificates": "4.3.2",
+          "Translations": "1.0.0",
+          "UI.Entities": "1.0.0"
         },
         "runtime": {
           "GuardService.dll": {}
@@ -1779,7 +1946,10 @@
       },
       "SQLDatabase/1.0.0": {
         "dependencies": {
-          "Core.Contracts": "1.0.0"
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
+          "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4"
         },
         "runtime": {
           "SQLDatabase.dll": {}
@@ -1788,13 +1958,35 @@
           "SQLDatabase.dll": {}
         }
       },
+      "Translations/1.0.0": {
+        "dependencies": {
+          "Core.Contracts": "1.0.0",
+          "UI.Entities": "1.0.0"
+        },
+        "runtime": {
+          "Translations.dll": {}
+        },
+        "compile": {
+          "Translations.dll": {}
+        }
+      },
+      "UI.Entities/1.0.0": {
+        "runtime": {
+          "UI.Entities.dll": {}
+        },
+        "compile": {
+          "UI.Entities.dll": {}
+        }
+      },
       "UserService/1.0.0": {
         "dependencies": {
-          "AWSSDK.Rekognition": "3.3.11.7",
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
           "AWSSDK.S3": "3.3.26.1",
           "AWSSDKCPP-Rekognition": "1.6.20160627.25",
           "Amazon.S3": "0.11.5",
           "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
           "Firebase.js": "2.1.2",
           "FirebaseAuthentication.net": "3.1.0",
           "FirebaseDatabase.net": "3.3.3",
@@ -1821,11 +2013,18 @@
       },
       "VisitorService/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.3.29.2",
+          "AWSSDK.Rekognition": "3.3.11.10",
           "Core.Contracts": "1.0.0",
+          "EPPlus.Core": "1.5.4",
+          "FaceService": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
+          "SQLDatabase": "1.0.0",
           "System.Security.Cryptography.Algorithms": "4.3.1",
           "System.Security.Cryptography.ProtectedData": "4.5.0",
           "System.Security.Cryptography.X509Certificates": "4.3.2",
+          "Translations": "1.0.0",
+          "UI.Entities": "1.0.0",
           "UserService": "1.0.0"
         },
         "runtime": {
@@ -3081,7 +3280,7 @@
           "System.Threading.Tasks": "4.3.0",
           "System.Threading.Tasks.Parallel": "4.3.0",
           "System.Threading.Thread": "4.3.0",
-          "System.ValueTuple": "4.3.0",
+          "System.ValueTuple": "4.5.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0",
           "System.Xml.XPath.XDocument": "4.3.0",
@@ -4237,6 +4436,9 @@
         "dependencies": {
           "System.Security.Cryptography.Cng": "4.5.0"
         },
+        "compile": {
+          "ref/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {}
+        },
         "compileOnly": true
       },
       "System.Security.Cryptography.Primitives/4.3.0": {
@@ -4297,6 +4499,9 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.1.0",
           "System.Runtime.CompilerServices.Unsafe": "4.5.1"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
         },
         "compileOnly": true
       },
@@ -4360,14 +4565,6 @@
       },
       "System.Threading.Thread/4.3.0": {
         "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compileOnly": true
-      },
-      "System.ValueTuple/4.3.0": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0"
         },
         "compileOnly": true
@@ -4496,19 +4693,33 @@
       "path": "amazon.s3/0.11.5",
       "hashPath": "amazon.s3.0.11.5.nupkg.sha512"
     },
-    "AWSSDK.Core/3.3.28.1": {
+    "AutoMapper/7.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4LvND/YE5bNRQBcFjDsTZ4dUZn1s45ZMo0enj/jaSlP9V7JZLr1bil06iHR7EczTSCXOhpGbXxmeBbWeOb74aw==",
-      "path": "awssdk.core/3.3.28.1",
-      "hashPath": "awssdk.core.3.3.28.1.nupkg.sha512"
+      "sha512": "sha512-1qKMJ1WPs42VkgeQ5iXRDWf46+iUqYM/yColAvAeDQhUgQNsgzSxjMDHQc7dL2x/o0JY8TwG+obR7vbvgh+Y3g==",
+      "path": "automapper/7.0.1",
+      "hashPath": "automapper.7.0.1.nupkg.sha512"
     },
-    "AWSSDK.Rekognition/3.3.11.7": {
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/5.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-V6tTAWNnAj/okxrIaPzsH7dJ2G6Vd5HPdkVHTe3VRPd6f3Rc5VuwA84mcMxjJN5PZa5Ybt4S5icb56wPav1huw==",
-      "path": "awssdk.rekognition/3.3.11.7",
-      "hashPath": "awssdk.rekognition.3.3.11.7.nupkg.sha512"
+      "sha512": "sha512-FsPcuVkaAj232P6yrSxnQybBnwawvsg3C65l+BDShGaU9jfANGjMY2evNlQ8RAEezrutpeQT9LFWQJ+sXhaHPw==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/5.0.1",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.3.29.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FSAmwOk1Dd/cLLA3aGGE+uojl3sr9ix+Ga/hoD+B64hRL9Ob2ft6h5ckfHR/+J+x96DqAkiMG4BUV83R8vUPRQ==",
+      "path": "awssdk.core/3.3.29.2",
+      "hashPath": "awssdk.core.3.3.29.2.nupkg.sha512"
+    },
+    "AWSSDK.Rekognition/3.3.11.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JUafX1QKlLyeMZTSlSOFNucnesNcBkJDmr47kRLadOaV4peaPwBsQIbm/SE449/VdgbGQcmbRzpkJCHeBVNOdg==",
+      "path": "awssdk.rekognition/3.3.11.10",
+      "hashPath": "awssdk.rekognition.3.3.11.10.nupkg.sha512"
     },
     "AWSSDK.S3/3.3.26.1": {
       "type": "package",
@@ -4572,6 +4783,13 @@
       "sha512": "sha512-SbsFSW+ISwO94Vt7583cFCh0kb9FIAmdTWo80BLumDnAjDX5SOSEHTsavQzTN14G/yRLOPtS6d9mXNIqe6NiKQ==",
       "path": "entityframework/5.0.0",
       "hashPath": "entityframework.5.0.0.nupkg.sha512"
+    },
+    "EPPlus.Core/1.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eaESTJZVOWl8HNFdm9XJ+lLll0VZogJvpFIlLZcAfwofGrB7klJhmoYjl6mfyLJM9btBhSXfO6XHY0hvXUDDVg==",
+      "path": "epplus.core/1.5.4",
+      "hashPath": "epplus.core.1.5.4.nupkg.sha512"
     },
     "Firebase.js/2.1.2": {
       "type": "package",
@@ -4695,14 +4913,14 @@
     "Microsoft.AspNet.WebApi.Core/5.2.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8UiHr2VkrpwDCwXaXea8pNaR2zvJ3HYwsmWmkTFY1lEB2u4eFnL+aM+/GJK91Ud3KQ7Xse+Vysvj/UalM3IlmA==",
+      "sha512": "sha512-QMFixs/MvKZXjfUbV0gXxF85LKi+keu/zJKv13upg/JlcxJ+wdLSYzyHO/sgPPUuFVstgndK6Zt3VduWeqFmHQ==",
       "path": "microsoft.aspnet.webapi.core/5.2.6",
       "hashPath": "microsoft.aspnet.webapi.core.5.2.6.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.WebHost/5.2.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VAlK8qfAAMOGoC/vw3plcdSae6zMasrk14RZzL0B3nb+sp9DKL2wV1/soIA2Iys32jy8keR4Zk6m1JMDN4M64A==",
+      "sha512": "sha512-ny16MQ4+96uvpirNl3psecTqb3joOh0X0RS/6UQYt5oty67gV2GhPn07nt57E3/2tCmnhoSOKl9/Shenp2m3kA==",
       "path": "microsoft.aspnet.webapi.webhost/5.2.6",
       "hashPath": "microsoft.aspnet.webapi.webhost.5.2.6.nupkg.sha512"
     },
@@ -4716,7 +4934,7 @@
     "Microsoft.Bcl.Build/1.0.14": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-57EJ/NGEDQkIlQs9aO4adkYeaHMdg+pn5D8RfO1ZXQJgHOjTfGH+kWfppEaD6cg0PE2kGn9/GsACcu2LLyJM0g==",
+      "sha512": "sha512-cDLKSvNvRa519hplsbSoYqO69TjdDIhfjtKUM0g20/nVROoWsGav9KCI9HtnGjLmdV1+TcUUDhbotcllibjPEA==",
       "path": "microsoft.bcl.build/1.0.14",
       "hashPath": "microsoft.bcl.build.1.0.14.nupkg.sha512"
     },
@@ -4786,7 +5004,7 @@
     "Microsoft.EntityFrameworkCore.Tools.DotNet/2.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-G0soUii72VLtx3lOFXFaKIJ190hSZNnjkNvIxejaZdQFX3JTgXMB6C81KFinIkZXrt4wVdmu0xmmafB4sD7v6w==",
+      "sha512": "sha512-hzmsyzyoJJPB1XVC9oLiE9j9NrReeuTicAAiH/W2kBVfjX0/2isyi0S/4jVF6oP6MIuLBGOqRwjMwwG0jaz0rA==",
       "path": "microsoft.entityframeworkcore.tools.dotnet/2.0.3",
       "hashPath": "microsoft.entityframeworkcore.tools.dotnet.2.0.3.nupkg.sha512"
     },
@@ -4863,56 +5081,56 @@
     "Microsoft.VisualStudio.Web.CodeGeneration/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-EJkd4EOM2FrT1qWo5Z/LsmTxmiZBC6reETLAXnF6CG/c1IeZqRP/PY6PuyOz67LS5McOJ706egnLktJ23XVvEQ==",
+      "sha512": "sha512-xvNRQmZOYfuReVC9trT8sTYVRm7yJzI5z1YZ4iO6Im/EWOWoqqLNoYG0sY8EHnp4DOtioGJ/hmJ+ksqaJN8aBA==",
       "path": "microsoft.visualstudio.web.codegeneration/2.1.1",
       "hashPath": "microsoft.visualstudio.web.codegeneration.2.1.1.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Contracts/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mlO1U3Bt05P/oDa0STUtV6mOKlsXyCO2Nu0YKYmuhLxSw8sN6XMQ7ucoHA4YP3d/lVLvqRWnlEy8H8/AH21dOw==",
+      "sha512": "sha512-Su++Q22kR3EaWmg7flhuAX0xZFPVL4z99HYc9CNQZksi4L/lCzxyIRXJUV3qTEyyX8wkl6sx3RDVUcYcBTdjlg==",
       "path": "microsoft.visualstudio.web.codegeneration.contracts/2.1.1",
       "hashPath": "microsoft.visualstudio.web.codegeneration.contracts.2.1.1.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Core/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-AakHxdXgfX4BSEYMuQ6Yu/bT8LEhbQX69mcbIWYvbBcNZ2YR98mmU7NstLDzqhk2pkVqp29KFLmxzgVV39QKAQ==",
+      "sha512": "sha512-uIhfMpJOjQi/fBtKglWDP8lSuiX5AOQwomCS6hZ37EzKB5tMnaH+Z7DbkEFoZLaGcLDaskoOJ0nhIjA9A2i0Rg==",
       "path": "microsoft.visualstudio.web.codegeneration.core/2.1.1",
       "hashPath": "microsoft.visualstudio.web.codegeneration.core.2.1.1.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Design/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wkcgKiinxx9CW8SiABMXV1HUgb9DE7kQ8F9440R8WxLLiTsutn/a2ORzd6W38psFJq2VXc6jNXjXO9wasgnocg==",
+      "sha512": "sha512-d4xk6rWvW9HR2/QdwQ7OfrbmQcMi4EE3IlZT3JwfIRFdbtCXDFz+PCjs/qomLC+d+vlEXZuPvneX+G5FF9d1MA==",
       "path": "microsoft.visualstudio.web.codegeneration.design/2.1.1",
       "hashPath": "microsoft.visualstudio.web.codegeneration.design.2.1.1.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jKSk/wr0RUSlZsqqLr7UmNvfbMC8j18xxG9iEJoCoN5wgEzq/Yd9FFF9FAYDI3IWEQSKFH0IYOx8WrzwmQ7nqw==",
+      "sha512": "sha512-03wiQubZKezzT5OKgnExDOnzrtn/TQG4QDQfOJI524yZ2CCC/h4PxtPmO5FDH7x1qP/99EXLaZYojE9fZ7u9Yw==",
       "path": "microsoft.visualstudio.web.codegeneration.entityframeworkcore/2.1.1",
       "hashPath": "microsoft.visualstudio.web.codegeneration.entityframeworkcore.2.1.1.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Templating/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7lOJU7JLaWZ6GmlLDsIVrjRWfUaYesclLRS8t8aqg5+KvNhasZ6JyfrQI4uiE2b7jXV8YegN9BWmXsp/Nhya3w==",
+      "sha512": "sha512-8rubHXs2ufTJ205H2c9aSga/X8ToURtGguISBHEGkAcz/1Qp922jAaGvGvvJNhoXiBg/9K5VupkfkJDvnhN3/Q==",
       "path": "microsoft.visualstudio.web.codegeneration.templating/2.1.1",
       "hashPath": "microsoft.visualstudio.web.codegeneration.templating.2.1.1.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Utils/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-WgaLZas8Uhcad1RFgf1b6Vm8YYaGnK2vfov+4zrz7IPiN6RehtT5nsBJBYblpN1ET0zJdcXJ91p3Y1ox+Le4bg==",
+      "sha512": "sha512-MRtBhRi0CQ36yi9r08l/j7I24a2bfiAW9N6fSq69M5mZFw1vjijPaM2NPokWv9hqT0aUCLNKCX7A6E20XgYE1w==",
       "path": "microsoft.visualstudio.web.codegeneration.utils/2.1.1",
       "hashPath": "microsoft.visualstudio.web.codegeneration.utils.2.1.1.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kwj2oBltHrD/W2ELyvkENjGpw62m1w3KplCfH9zLcgtE1r6oHtp5Hzf19It756Q1hHfTWfYZmzBySu7yRENyLQ==",
+      "sha512": "sha512-LhsJrKf4fMqOyaVqAexbpkR6GmHDuVeek+s1NFGwFYFZAgSbnLmBt8DIw41zGbEXO/GYiPLTOTA7F1fJknsf6g==",
       "path": "microsoft.visualstudio.web.codegenerators.mvc/2.1.1",
       "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.2.1.1.nupkg.sha512"
     },
@@ -5133,6 +5351,13 @@
       "path": "system.composition.typedparts/1.0.31",
       "hashPath": "system.composition.typedparts.1.0.31.nupkg.sha512"
     },
+    "System.Data.Common/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ==",
+      "path": "system.data.common/4.3.0",
+      "hashPath": "system.data.common.4.3.0.nupkg.sha512"
+    },
     "System.Data.Entity.Repository/2.0.0.1": {
       "type": "package",
       "serviceable": true,
@@ -5146,6 +5371,13 @@
       "sha512": "sha512-m86SgxAIi5j0iGzx2y1LrcMcopIYfinfcojyQ9CcNRy3MZvi0dVuDlMj2M7kV6MMGSunqZ+OnQ+rQbxWafFBaw==",
       "path": "system.diagnostics.diagnosticsource/4.5.1",
       "hashPath": "system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512"
+    },
+    "System.Drawing.Common/4.5.0-preview1-25914-04": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2jJby4+hzxON5gSOaDaOJZ2J6lIPBJqbWn37souvi+uDtknGFYRi//mUSPbW0Hp5HW2YMMFE6iRHTgc4YPOmuw==",
+      "path": "system.drawing.common/4.5.0-preview1-25914-04",
+      "hashPath": "system.drawing.common.4.5.0-preview1-25914-04.nupkg.sha512"
     },
     "System.Globalization.Calendars/4.3.0": {
       "type": "package",
@@ -5294,12 +5526,12 @@
       "path": "system.threading.overlapped/4.0.1",
       "hashPath": "system.threading.overlapped.4.0.1.nupkg.sha512"
     },
-    "System.Threading.ThreadPool/4.0.10": {
+    "System.Threading.ThreadPool/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IMXgB5Vf/5Qw1kpoVgJMOvUO1l32aC+qC3OaIZjWJOjvcxuxNWOK2ZTWWYXfij22NHxT2j1yWX5vlAeQWld9vA==",
-      "path": "system.threading.threadpool/4.0.10",
-      "hashPath": "system.threading.threadpool.4.0.10.nupkg.sha512"
+      "sha512": "sha512-k/+g4b7vjdd4aix83sTgC9VG6oXYKAktSfNIJUNGxPEj7ryEOfzHHhfnmsZvjxawwcD9HyWXKCXmPjX8U4zeSw==",
+      "path": "system.threading.threadpool/4.3.0",
+      "hashPath": "system.threading.threadpool.4.3.0.nupkg.sha512"
     },
     "System.Threading.Timer/4.0.1": {
       "type": "package",
@@ -5307,6 +5539,13 @@
       "sha512": "sha512-saGfUV8uqVW6LeURiqxcGhZ24PzuRNaUBtbhVeuUAvky1naH395A/1nY0P2bWvrw/BreRtIB/EzTDkGBpqCwEw==",
       "path": "system.threading.timer/4.0.1",
       "hashPath": "system.threading.timer.4.0.1.nupkg.sha512"
+    },
+    "System.ValueTuple/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xZtSZNEHGa+tGsKuP4sh257vxJ/yemShz4EusmomkynMzuEDDjVaErBNewpzEF6swUgbcrSQAX3ELsEp1zCOwA==",
+      "path": "system.valuetuple/4.5.0",
+      "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
     },
     "System.Web.Http.Common/4.0.20126.16343": {
       "type": "package",
@@ -5329,6 +5568,13 @@
       "path": "system.web.providers.core/1.1.0",
       "hashPath": "system.web.providers.core.1.1.0.nupkg.sha512"
     },
+    "System.Xml.XPath.XmlDocument/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-91tvfHWHSrYFPolCwWYqbpo1YaoBUCQ3uNZ/O/zr0ev5BnkoATJoie16ywlMVUaXZtfSfNELxhtG3aqpTfwR4w==",
+      "path": "system.xml.xpath.xmldocument/4.3.0",
+      "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
+    },
     "SystemWebPackage/1.0.0": {
       "type": "package",
       "serviceable": true,
@@ -5343,6 +5589,11 @@
       "path": "twilio/5.20.1",
       "hashPath": "twilio.5.20.1.nupkg.sha512"
     },
+    "AdminsService/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Core.Contracts/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -5353,12 +5604,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "FaceService/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "GuardService/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "SQLDatabase/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Translations/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UI.Entities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -6982,13 +7248,6 @@
       "sha512": "sha512-OHmbT+Zz065NKII/ZHcH9XO1dEuLGI1L2k7uYss+9C1jLxTC9kTZZuzUOyXHayRk+dft9CiDf3I/QZ0t8JKyBQ==",
       "path": "system.threading.thread/4.3.0",
       "hashPath": "system.threading.thread.4.3.0.nupkg.sha512"
-    },
-    "System.ValueTuple/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-cNLEvBX3d6MMQRZe3SMFNukVbitDAEpVZO17qa0/2FHxZ7Y7PpFRpr6m2615XYM/tYYYf0B+WyHNujqIw8Luwg==",
-      "path": "system.valuetuple/4.3.0",
-      "hashPath": "system.valuetuple.4.3.0.nupkg.sha512"
     },
     "System.Xml.ReaderWriter/4.3.0": {
       "type": "package",

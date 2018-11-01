@@ -1,0 +1,9 @@
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\bin\Debug\netcoreapp2.1\UI.Entities.deps.json
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\bin\Debug\netcoreapp2.1\UI.Entities.dll
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\bin\Debug\netcoreapp2.1\UI.Entities.pdb
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\obj\Debug\netcoreapp2.1\UI.Entities.csprojResolveAssemblyReference.cache
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\obj\Debug\netcoreapp2.1\UI.Entities.csproj.CoreCompileInputs.cache
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\obj\Debug\netcoreapp2.1\UI.Entities.AssemblyInfoInputs.cache
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\obj\Debug\netcoreapp2.1\UI.Entities.AssemblyInfo.cs
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\obj\Debug\netcoreapp2.1\UI.Entities.dll
+C:\Users\asharma\Desktop\Tavisca-Visitor-API\DALCore\EmployeeData\obj\Debug\netcoreapp2.1\UI.Entities.pdb

@@ -9,6 +9,8 @@ namespace DALCore.Models
         public string EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public DateTime DateOfVisit { get; set; }
-        public DateTime TimeOfEntry { get; set; }
+        public TimeSpan TimeOfEntry { get; set; }
+        public DateTime DateOfExit { get; set; }
+        public TimeSpan TimeOfExit { get; set; }
     }
 }

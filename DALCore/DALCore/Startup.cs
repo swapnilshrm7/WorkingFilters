@@ -10,6 +10,9 @@ using EmployeeService;
 using DALCore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using FaceService;
+using AdminsService;
+using AutoMapper;
 
 namespace DALCore
 {
@@ -37,7 +40,10 @@ namespace DALCore
             services.AddTransient<IUserAuthentication, UserLoginManager>();  
             services.AddTransient<IForgotPassword, ForgotPasswordManager>();
             services.AddTransient<IEmployee, EmployeeManager>();
-            
+            services.AddTransient<IFace, FaceManager>();
+            services.AddTransient<IAdmin, AdminManager>();
+            //services.AddAutoMapper(m => m.AddProfile(new AutoMapperConfiguration()));
+
             //services.AddDbContext<VisitorsDatabaseContext>(options =>
             //                    options.UseSqlServer(Configuration.GetConnectionString("TaviscaVisitorDatabase")));
         }

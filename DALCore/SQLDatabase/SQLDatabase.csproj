@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="VisitorDatabase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.3.29.2" />
+    <PackageReference Include="AWSSDK.Rekognition" Version="3.3.11.10" />
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj" />
   </ItemGroup>
 

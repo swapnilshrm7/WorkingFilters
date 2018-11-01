@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Models\AllLogs.cs" />
     <Compile Include="Models\DateAndName.cs" />
     <Compile Include="Models\DateAndTime.cs" />
     <Compile Include="Models\EmployeeLogs.cs" />
@@ -28,11 +29,14 @@
     <Compile Include="Models\UserId.cs" />
     <Compile Include="Models\Visitors.cs" />
     <Compile Include="Models\VisitorsData.cs" />
-    <Compile Include="Models\VisitorsDatabaseContext.cs" />
+    <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\VisitorsLogs.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.3.29.2" />
+    <PackageReference Include="AWSSDK.Rekognition" Version="3.3.11.10" />
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="4.5.0" />

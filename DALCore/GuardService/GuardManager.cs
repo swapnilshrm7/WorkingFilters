@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using Translations;
+using UI.Entities;
 
 namespace GuardService
 {
@@ -17,8 +19,8 @@ namespace GuardService
             try
             {
                 ClearList();
-                var entity = new VisitorsDatabaseContext();
-                List<GuardLogs> guardLogsList = entity.GuardLogs.FromSql("select * from GuardLogs").ToList<GuardLogs>();
+                var entity = new DatabaseContext();
+                List<GuardLogs> guardLogsList = entity.GuardLogs.ToList<GuardLogs>();
                 foreach (var entry in guardLogsList)
                 {
                     GetGuardData(entry);
@@ -27,36 +29,27 @@ namespace GuardService
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not get Guard Logs! Please Contact Admin" + ex.StackTrace);
+                List<GuardData> error = new List<GuardData>();
+                error[0].Error = true;
+                return error;
             }
         }
         public static void GetGuardData(GuardLogs guard)
         {
             try
             {
-                var entity = new VisitorsDatabaseContext();
+                var entity = new DatabaseContext();
                 Guard guardData = entity.Guard.Find(guard.GuardId);
                 GuardData guardEntry = new GuardData();
                 guardEntry.GuardId = guard.GuardId;
                 guardEntry.SerialNumber = guard.SerialNumber;
-                guardEntry.GuardPassword = guard.GuardPassword;
                 guardEntry.LoginTime = guard.LoginTime;
                 guardEntry.LogoutTime = guard.LogoutTime;
                 guardEntry.GuardName = guardData.GuardName;
                 guardEntry.EmailId = guardData.EmailId;
                 guardEntry.GuardStatus = guardData.GuardStatus;
                 guardEntry.Gender = guardData.Gender;
-                guardEntry.DateOfBirth = guardData.DateOfBirth;
-                guardEntry.LocalAddress = guardData.LocalAddress;
-                guardEntry.PermanentAddress = guardData.PermanentAddress;
-                guardEntry.EmergencyContactPerson = guardData.EmergencyContactPerson;
-                guardEntry.EmergencyContactNumber = guardData.EmergencyContactNumber;
                 guardEntry.PrimaryContactNumber = guardData.PrimaryContactNumber;
-                guardEntry.SecondaryContactNumber = guardData.SecondaryContactNumber;
-                guardEntry.DateOfJoining = guardData.DateOfJoining;
-                guardEntry.DateOfResignation = guardData.DateOfResignation;
-                guardEntry.Remark = guardData.Remark;
-                guardEntry.BloodGroup = guardData.BloodGroup;
                 guardEntry.MedicalSpecification = guardData.MedicalSpecification;
                 guardEntry.LoginDate = guard.LoginDate;
                 guardEntry.LogoutDate = guard.LogoutDate;
@@ -64,7 +57,9 @@ namespace GuardService
             }
             catch (Exception ex)
             {
-                throw new Exception("Internal Error: GetGuardData" + ex.StackTrace);
+                GuardData error = new GuardData();
+                error.Error = true;
+                allLogs.Add(error);
             }
         }
         public List<GuardData> GetGuardsLogByName(string searchInput)
@@ -72,8 +67,8 @@ namespace GuardService
             try
             {
                 ClearList();
-                var entity = new VisitorsDatabaseContext();
-                List<Guard> guardLogsList = entity.Guard.FromSql("select * from Guard where GuardName  = @searchInput", new SqlParameter("@searchInput", searchInput)).ToList<Guard>();
+                var entity = new DatabaseContext();
+                List<Guard> guardLogsList = entity.Guard.Where(entry => entry.GuardName == searchInput).ToList<Guard>();
                 foreach (var entry in guardLogsList)
                 {
                     GetGuardDataByName(entry);
@@ -82,15 +77,17 @@ namespace GuardService
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not get Guard Logs! Please Contact Admin" + ex.StackTrace);
+                List<GuardData> error = new List<GuardData>();
+                error[0].Error = true;
+                return error;
             }
         }
         public void GetGuardDataByName(Guard guard)
         {
             try
             {
-                var entity = new VisitorsDatabaseContext();
-                List<GuardLogs> guardData = entity.GuardLogs.FromSql("select * from GuardLogs where GuardId = @searchInput", new SqlParameter("@searchInput", guard.GuardId)).ToList<GuardLogs>();
+                var entity = new DatabaseContext();
+                List<GuardLogs> guardData = entity.GuardLogs.Where(entry => entry.GuardId == guard.GuardId).ToList<GuardLogs>();
                 foreach (var result in guardData)
                 {
                     GuardData guardEntry = new GuardData();
@@ -99,32 +96,21 @@ namespace GuardService
                     guardEntry.EmailId = guard.EmailId;
                     guardEntry.GuardStatus = guard.GuardStatus;
                     guardEntry.Gender = guard.Gender;
-                    guardEntry.DateOfBirth = guard.DateOfBirth;
-                    guardEntry.LocalAddress = guard.LocalAddress;
-                    guardEntry.PermanentAddress = guard.PermanentAddress;
-                    guardEntry.EmergencyContactNumber = guard.EmergencyContactNumber;
-                    guardEntry.EmergencyContactPerson = guard.EmergencyContactPerson;
                     guardEntry.PrimaryContactNumber = guard.PrimaryContactNumber;
-                    guardEntry.DateOfJoining = guard.DateOfJoining;
-                    guardEntry.Remark = guard.Remark;
-                    guardEntry.BloodGroup = guard.BloodGroup;
                     guardEntry.MedicalSpecification = guard.MedicalSpecification;
                     guardEntry.SerialNumber = result.SerialNumber;
                     guardEntry.LoginTime = result.LoginTime;
                     guardEntry.LogoutTime = result.LogoutTime;
                     guardEntry.LoginDate = result.LoginDate;
                     guardEntry.LogoutDate = result.LogoutDate;
-
-                    if (guard.GuardStatus.Equals("Active"))
-                    {
-                        guardEntry.DateOfResignation = guard.DateOfResignation;
-                    }
                     allLogs.Add(guardEntry);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Internal Error: GetGuardDataByName" + ex.StackTrace);
+                GuardData error = new GuardData();
+                error.Error = true;
+                allLogs.Add(error);
             }
         }
         public List<GuardData> GetGuardLogByDateAndTime(string fromDate, string toDate, string fromTime, string toTime)
@@ -137,10 +123,8 @@ namespace GuardService
                     fromTime = "00:00:00";
                     toTime = "23:59:59";
                 }
-                var entity = new VisitorsDatabaseContext();
-                List<GuardLogs> visitorLogsList =
-                    entity.GuardLogs.FromSql("select * from GuardLogs where LoginDate between @fromDate And @toDate and LogoutDate between @fromDate And @toDate and LoginTime >= @fromTime and LogoutTime <= @toTime", new SqlParameter("@fromDate", fromDate), new SqlParameter("@toDate", toDate), new SqlParameter("@fromTime", fromTime), new SqlParameter("@toTime", toTime)).ToList<GuardLogs>();
-
+                var entity = new DatabaseContext();
+                List<GuardLogs> visitorLogsList = entity.GuardLogs.Where(entry => entry.LoginDate >= Convert.ToDateTime(fromDate).Date && entry.LoginDate <= Convert.ToDateTime(toDate).Date && entry.LoginTime >= Convert.ToDateTime(fromTime).TimeOfDay && entry.LoginTime <= Convert.ToDateTime(toTime).TimeOfDay).ToList<GuardLogs>();
                 foreach (var entry in visitorLogsList)
                 {
                     GetGuardData(entry);
@@ -150,16 +134,18 @@ namespace GuardService
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not get Guards From Log. Please try again" + ex.StackTrace);
+                List<GuardData> error = new List<GuardData>();
+                error[0].Error = true;
+                return error;
             }
         }
-        public List<Guard> GetUniqueVisitors()
+        public List<GuardsData> GetUniqueGuards()
         {
             try
             {
                 ClearList();
-                var entity = new VisitorsDatabaseContext();
-                List<Guard> GuardsList = entity.Guard.FromSql("select * from Guard").ToList<Guard>();
+                var entity = new DatabaseContext();
+                List<Guard> GuardsList = entity.Guard.ToList<Guard>();
                 foreach (var entry in GuardsList)
                 {
                     Guard uniqueGuard = new Guard();
@@ -181,20 +167,24 @@ namespace GuardService
                     uniqueGuard.MedicalSpecification = entry.MedicalSpecification;
                     AllGuards.Add(uniqueGuard);
                 }
-                return AllGuards;
+                ToGuardsData toGuardsData = new ToGuardsData();
+                List<GuardsData> TranslatedData = toGuardsData.TranslateToGuardsDataList(AllGuards);
+                return TranslatedData;
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not get Visitors. Please try again" + ex.StackTrace);
+                List<GuardsData> TranslatedData = new List<GuardsData>();
+                TranslatedData[0].Error = true;
+                return TranslatedData;
             }
         }
-        public List<Guard> GetUniqueVisitorsByName(string searchInput)
+        public List<GuardsData> GetUniqueGuardsByName(string searchInput)
         {
             try
             {
                 ClearList();
-                var entity = new VisitorsDatabaseContext();
-                List<Guard> GuardsList = entity.Guard.FromSql("select * from Guard where GuardName = @searchInput", new SqlParameter("@searchInput", searchInput)).ToList<Guard>();
+                var entity = new DatabaseContext();
+                List<Guard> GuardsList = entity.Guard.Where(entry => entry.GuardName == searchInput).ToList<Guard>();
                 foreach (var entry in GuardsList)
                 {
                     Guard uniqueGuard = new Guard();
@@ -216,51 +206,147 @@ namespace GuardService
                     uniqueGuard.MedicalSpecification = entry.MedicalSpecification;
                     AllGuards.Add(uniqueGuard);
                 }
-                return AllGuards;
+                ToGuardsData toGuardsData = new ToGuardsData();
+                List<GuardsData> TranslatedData = toGuardsData.TranslateToGuardsDataList(AllGuards);
+                return TranslatedData;
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not get Visitors. Please try again" + ex.StackTrace);
+                List<GuardsData> TranslatedData = new List<GuardsData>();
+                TranslatedData[0].Error = true;
+                return TranslatedData;
             }
         }
-        public void DeleteGuard(string GuardId)
+        public bool DeleteGuard(string GuardId)
         {
             try
             {
-                var entity = new VisitorsDatabaseContext();
-                entity.Database.ExecuteSqlCommand("DELETE FROM Guard WHERE GuardId=@GuardId", new SqlParameter("@GuardId", GuardId));
+                var entity = new DatabaseContext();
+                var GuardDetails = entity.Guard.Find(GuardId);
+                GuardDetails.GuardStatus = "INACTIVE";
+                entity.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not delete Guard. Please try again" + ex.StackTrace);
+                return false;
             }
         }
         public bool AddGuard(Guard NewGuard)
         {
             try
             {
-                var entity = new VisitorsDatabaseContext();
+                var entity = new DatabaseContext();
                 if (NewGuard.SecondaryContactNumber == null)
                     NewGuard.SecondaryContactNumber = "";
                 if (NewGuard.MedicalSpecification == null)
                     NewGuard.MedicalSpecification = "";
                 if (NewGuard.Remark == null)
                     NewGuard.Remark = "";
-                var query = entity.Database.ExecuteSqlCommand("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress," +
-                    " EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)" +
-                    "values(@GuardId, @GuardName, @EmailId, @GuardStatus, @Gender, @DateOfBirth, @LocalAddress, @PermanentAddress," +
-                    "@EmergencyContactPerson, @EmergencyContactNumber, @PrimaryContactNumber, @SecondaryContactNumber, @DateOfJoining, @DateOfResignation, @Remark, @BloodGroup, @MedicalSpecification)",
-                    new SqlParameter("@GuardId", NewGuard.GuardId), new SqlParameter("@GuardName", NewGuard.GuardName), new SqlParameter("@EmailId", NewGuard.EmailId), new SqlParameter("@GuardStatus", "Active"),
-                    new SqlParameter("@Gender", NewGuard.Gender), new SqlParameter("@DateOfBirth", NewGuard.DateOfBirth), new SqlParameter("@LocalAddress", NewGuard.LocalAddress), new SqlParameter("@PermanentAddress",
-                    NewGuard.PermanentAddress), new SqlParameter("@EmergencyContactPerson", NewGuard.EmergencyContactPerson), new SqlParameter("@EmergencyContactNumber", NewGuard.EmergencyContactNumber),
-                    new SqlParameter("@PrimaryContactNumber", NewGuard.PrimaryContactNumber), new SqlParameter("@SecondaryContactNumber", NewGuard.SecondaryContactNumber), new SqlParameter("@DateOfJoining", NewGuard.DateOfJoining),
-                    new SqlParameter("@DateOfResignation", ""), new SqlParameter("@Remark", NewGuard.Remark), new SqlParameter("@BloodGroup", NewGuard.BloodGroup), new SqlParameter("@MedicalSpecification", NewGuard.MedicalSpecification));
+                Guard NewGuardEntry = new Guard();
+                NewGuardEntry.GuardId = NewGuard.GuardId;
+                NewGuardEntry.GuardName = NewGuard.GuardName;
+                NewGuardEntry.EmailId = NewGuard.EmailId;
+                NewGuardEntry.GuardStatus = NewGuard.GuardStatus;
+                NewGuardEntry.Gender = NewGuard.Gender;
+                NewGuardEntry.DateOfBirth = NewGuard.DateOfBirth;
+                NewGuardEntry.LocalAddress = NewGuard.LocalAddress;
+                NewGuardEntry.PermanentAddress = NewGuard.PermanentAddress;
+                NewGuardEntry.EmergencyContactNumber = NewGuard.EmergencyContactNumber;
+                NewGuardEntry.EmergencyContactPerson = NewGuard.EmergencyContactPerson;
+                NewGuardEntry.PrimaryContactNumber = NewGuard.PrimaryContactNumber;
+                NewGuardEntry.SecondaryContactNumber = NewGuard.SecondaryContactNumber;
+                NewGuardEntry.DateOfJoining = NewGuard.DateOfJoining;
+                NewGuardEntry.DateOfResignation = NewGuard.DateOfResignation;
+                NewGuardEntry.Remark = NewGuard.Remark;
+                NewGuardEntry.BloodGroup = NewGuard.BloodGroup;
+                NewGuardEntry.MedicalSpecification = NewGuard.MedicalSpecification;
+                entity.Guard.Add(NewGuardEntry);
+                entity.SaveChanges();
                 return true;
-                //entity.Guard.FromSql("insert into Guard(GuardId, GuardName, EmailId, GuardStatus, Gender, DateOfBirth, LocalAddress, PermanentAddress, EmergencyContactPerson, EmergencyContactNumber, PrimaryContactNumber, SecondaryContactNumber, DateOfJoining, DateOfResignation, Remark, BloodGroup, MedicalSpecification)values(NewGuard.GuardId, NewGuard.GuardName, NewGuard.EmailId, NewGuard.GuardStatus, NewGuard.Gender, NewGuard.DateOfBirth, NewGuard.LocalAddress, NewGuard.PermanentAddress, NewGuard.EmergencyContactPerson, NewGuard.EmergencyContactNumber, NewGuard.PrimaryContactNumber, NewGuard.SecondaryContactNumber, NewGuard.DateOfJoining, NewGuard.DateOfResignation, NewGuard.Remark, NewGuard.BloodGroup, NewGuard.MedicalSpecification");
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not Add Guard. Please try again" + ex.StackTrace);
+                return false;
+            }
+        }
+        public bool EditExistingGuard(Guard details)
+        {
+            try
+            {
+                var entity = new DatabaseContext();
+                var GuardDetails = entity.Guard.Find(details.GuardId);
+                GuardDetails.DateOfJoining = details.DateOfJoining;
+                GuardDetails.DateOfResignation = details.DateOfResignation;
+                GuardDetails.EmailId = details.EmailId;
+                GuardDetails.EmergencyContactNumber = details.EmergencyContactNumber;
+                GuardDetails.EmergencyContactPerson = details.EmergencyContactPerson;
+                GuardDetails.Gender = details.Gender;
+                GuardDetails.GuardName = details.GuardName;
+                GuardDetails.GuardStatus = details.GuardStatus;
+                GuardDetails.LocalAddress = details.LocalAddress;
+                GuardDetails.MedicalSpecification = details.MedicalSpecification;
+                GuardDetails.PrimaryContactNumber = details.PrimaryContactNumber;
+                GuardDetails.Remark = details.Remark;
+                GuardDetails.SecondaryContactNumber = details.SecondaryContactNumber;
+                entity.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public GuardsData GetGuardDetailsById(string GuardId)
+        {
+            try
+            {
+                var entity = new DatabaseContext();
+                Guard GuardDetails = entity.Guard.Find(GuardId);
+                ToGuardsData toGuardsData = new ToGuardsData();
+                GuardsData TranslatedData = toGuardsData.TranslateToGuardsData(GuardDetails);
+                return TranslatedData;
+            }
+            catch(Exception ex)
+            {
+                GuardsData TranslatedData = new GuardsData();
+                TranslatedData.Error = true;
+                return TranslatedData;
+            }
+        }
+        public string AddGuardLogAtLogin(string GuardId)
+        {
+            try
+            {
+                var entity = new DatabaseContext();
+                GuardLogs NewLog = new GuardLogs();
+                NewLog.GuardId = GuardId;
+                NewLog.LoginDate = DateTime.Today;
+                NewLog.LoginTime = DateTime.Now.TimeOfDay;
+                entity.GuardLogs.Add(NewLog);
+                entity.SaveChanges();
+                return "Logged Successfully";
+            }
+            catch(Exception ex)
+            {
+                return "Unable to Log Guard Activity";
+            }
+        }
+        public string EditGuardLogAtLogOut(string GuardId)
+        {
+            try
+            {
+                var entity = new DatabaseContext();
+                string time = "00:00:00.0000000";
+                GuardLogs ExistingLog = entity.GuardLogs.Where(entry => entry.LogoutTime == Convert.ToDateTime(time).TimeOfDay && entry.GuardId==GuardId).FirstOrDefault();
+                ExistingLog.LogoutTime = DateTime.Now.TimeOfDay;
+                ExistingLog.LogoutDate = DateTime.Today;
+                entity.SaveChanges();
+                return "Logged Successfully";
+            }
+            catch(Exception ex)
+            {
+                return "Unable to Log Guard Activity";
             }
         }
         public void ClearList()

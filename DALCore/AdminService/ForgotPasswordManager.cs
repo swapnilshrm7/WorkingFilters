@@ -28,7 +28,7 @@ namespace UserService
         {
             try
             {
-                var entity = new VisitorsDatabaseContext();
+                var entity = new DatabaseContext();
                 UserDatabase sqlDB = new UserDatabase();
                 LoginCredentials loginCredentials = sqlDB.GetLoginCredentialsByUserId(userId);
                 SMSGeneration smsGeneration = new SMSGeneration();
@@ -44,7 +44,7 @@ namespace UserService
         {
             try
             {
-                var entity = new VisitorsDatabaseContext();
+                var entity = new DatabaseContext();
                 UserDatabase sqlDB = new UserDatabase();
                 LoginCredentials response = sqlDB.GetLoginCredentialsByUserId(userId);
                 if (response.Otp==otpEnteredByUser)

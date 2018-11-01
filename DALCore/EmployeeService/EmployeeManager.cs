@@ -5,63 +5,238 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using Translations;
+using UI.Entities;
 
 namespace EmployeeService
 {
     public class EmployeeManager : IEmployee
     {
-        public List<Employees> GetAllEmployees()
+        public List<Employee> GetAllEmployees()
         {
-            var entity = new VisitorsDatabaseContext();
-            List<Employees> AllEmployees = entity.Employees.FromSql("select * from Employees").ToList<Employees>();
-            return AllEmployees;
+            try
+            {
+                var entity = new DatabaseContext();
+                List<Employees> AllEmployees = entity.Employees.ToList<Employees>();
+                ToEmployee convert = new ToEmployee();
+                List<Employee> TranslatedList = convert.ToEmployeesList(AllEmployees);
+                return TranslatedList;
+            }
+            catch (Exception ex)
+            {
+                List<Employee> EmployeeList = new List<Employee>();
+                EmployeeList[0].Error = true; 
+                return EmployeeList;
+            }
         }
-        public void EditEmployee(Employees employee)
+        public string EditEmployee(Employees employee)
         {
-            var entity = new VisitorsDatabaseContext();
-            //List<Employees> MatchingEmployee = entity.Employees.FromSql("select * from Employees where EmployeeId = @EmpId", new SqlParameter("@EmpId", employee.EmployeeId)).ToList<Employees>();
-            entity.Database.ExecuteSqlCommand("Update Employees SET EmployeeId=@EmployeeId,EmployeeName=@EmployeeName,EmailId=@EmailId,Location=@Location,EmployeeStatus=@EmployeeStatus,Gender=@Gender,DateOfBirth=@DateOfBirth,LocalAddress=@LocalAddress,PermanentAddress=@PermanentAddress,EmergencyContactPerson=@EmergencyContactPerson,EmergencyContactNumber=@EmergencyContactNumber,PrimaryContactNumber=@PrimaryContactNumber,SecondaryContactNumber=@SecondaryContactNumber,DateOfJoining=@DateOfJoining,DateOfResignation=@DateOfResignation,Remark=@Remark,BloodGroup=@BloodGroup,MedicalSpecification=@MedicalSpecification where EmployeeId=@MatchingId", new SqlParameter("@EmployeeId", employee.EmployeeId), new SqlParameter("@EmployeeName", employee.EmployeeName), new SqlParameter("@EmailId", employee.EmailId), new SqlParameter("@Location", employee.Location), new SqlParameter("@EmployeeStatus", employee.EmployeeStatus), new SqlParameter("@Gender", employee.Gender), new SqlParameter("@DateOfBirth", employee.DateOfBirth), new SqlParameter("@LocalAddress", employee.LocalAddress), new SqlParameter("@PermanentAddress", employee.PermanentAddress), new SqlParameter("@EmergencyContactPerson", employee.EmergencyContactPerson), new SqlParameter("@EmergencyContactNumber", employee.EmergencyContactNumber), new SqlParameter("@PrimaryContactNumber", employee.PrimaryContactNumber), new SqlParameter("@SecondaryContactNumber", employee.SecondaryContactNumber), new SqlParameter("@DateOfJoining", employee.DateOfJoining), new SqlParameter("@DateOfResignation", employee.DateOfResignation), new SqlParameter("@Remark", employee.Remark), new SqlParameter("@BloodGroup", employee.BloodGroup), new SqlParameter("@MedicalSpecification", employee.MedicalSpecification), new SqlParameter("@MatchingId", employee.EmployeeId));
+            try
+            {
+                var entity = new DatabaseContext();
+                Employees EmployeeDetails = entity.Employees.Where(x => x.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                EmployeeDetails.EmployeeName = employee.EmployeeName;
+                EmployeeDetails.EmailId = employee.EmailId;
+                EmployeeDetails.Location = employee.Location;
+                EmployeeDetails.Gender = employee.Gender;
+                EmployeeDetails.LocalAddress = employee.LocalAddress;
+                EmployeeDetails.EmergencyContactPerson = employee.EmergencyContactPerson;
+                EmployeeDetails.EmergencyContactNumber = employee.EmergencyContactNumber;
+                EmployeeDetails.PrimaryContactNumber = employee.PrimaryContactNumber;
+                EmployeeDetails.SecondaryContactNumber = employee.SecondaryContactNumber;
+                EmployeeDetails.Remark = employee.Remark;
+                EmployeeDetails.MedicalSpecification = employee.MedicalSpecification;
+                entity.SaveChanges();
+                return "Employee edited successfully";
+            }
+            catch (Exception ex)
+            {
+                return ("Could not edit Employees! Please Contact Admin" + ex.StackTrace);
+            }
         }
-        public void AddNewEmployee(Employees employee)
+        public bool AddNewEmployee(Employees employee)
         {
-            var entity = new VisitorsDatabaseContext();
-            entity.Database.ExecuteSqlCommand("Insert into Employees(EmployeeId,EmployeeName,EmailId,Location,EmployeeStatus,Gender,DateOfBirth,LocalAddress,PermanentAddress,EmergencyContactPerson,EmergencyContactNumber,PrimaryContactNumber,SecondaryContactNumber,DateOfJoining,DateOfResignation,Remark,BloodGroup,MedicalSpecification) values (@EmployeeId,@EmployeeName,@EmailId,@Location,@EmployeeStatus,@Gender,@DateOfBirth,@LocalAddress,@PermanentAddress,@EmergencyContactPerson,@EmergencyContactNumber,@PrimaryContactNumber,@SecondaryContactNumber,@DateOfJoining,@DateOfResignation,@Remark,@BloodGroup,@MedicalSpecification)", new SqlParameter("@EmployeeId", employee.EmployeeId), new SqlParameter("@EmployeeName", employee.EmployeeName), new SqlParameter("@EmailId", employee.EmailId), new SqlParameter("@Location", employee.Location), new SqlParameter("@EmployeeStatus", employee.EmployeeStatus), new SqlParameter("@Gender", employee.Gender), new SqlParameter("@DateOfBirth", employee.DateOfBirth), new SqlParameter("@LocalAddress", employee.LocalAddress), new SqlParameter("@PermanentAddress", employee.PermanentAddress), new SqlParameter("@EmergencyContactPerson", employee.EmergencyContactPerson), new SqlParameter("@EmergencyContactNumber", employee.EmergencyContactNumber), new SqlParameter("@PrimaryContactNumber", employee.PrimaryContactNumber), new SqlParameter("@SecondaryContactNumber", employee.SecondaryContactNumber), new SqlParameter("@DateOfJoining", employee.DateOfJoining), new SqlParameter("@DateOfResignation", employee.DateOfResignation), new SqlParameter("@Remark", employee.Remark), new SqlParameter("@BloodGroup", employee.BloodGroup), new SqlParameter("@MedicalSpecification", employee.MedicalSpecification));
+            try
+            {
+                var entity = new DatabaseContext();
+                Employees NewEmployee = new Employees();
+                NewEmployee.EmployeeId = employee.EmployeeId;
+                NewEmployee.EmployeeName = employee.EmployeeName;
+                NewEmployee.EmailId = employee.EmailId;
+                NewEmployee.Location = employee.Location;
+                NewEmployee.EmployeeStatus = employee.EmployeeStatus;
+                NewEmployee.Gender = employee.Gender;
+                NewEmployee.DateOfBirth = employee.DateOfBirth;
+                NewEmployee.LocalAddress = employee.LocalAddress;
+                NewEmployee.PermanentAddress = employee.PermanentAddress;
+                NewEmployee.EmergencyContactPerson = employee.EmergencyContactPerson;
+                NewEmployee.EmergencyContactNumber = employee.EmergencyContactNumber;
+                NewEmployee.PrimaryContactNumber = employee.PrimaryContactNumber;
+                NewEmployee.SecondaryContactNumber = employee.SecondaryContactNumber;
+                NewEmployee.DateOfJoining = employee.DateOfJoining;
+                NewEmployee.DateOfResignation = employee.DateOfResignation;
+                NewEmployee.Remark = employee.Remark;
+                NewEmployee.BloodGroup = employee.BloodGroup;
+                NewEmployee.MedicalSpecification = employee.MedicalSpecification;
+                entity.Employees.Add(NewEmployee);
+                entity.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
-        public string GetEmployeeNameById(string UserId)
+        public string GetEmployeeNameById(string employeeID)
         {
-            var entity = new VisitorsDatabaseContext();
-            List<Employees> Employee = entity.Employees.FromSql("select * from Employees where EmployeeId = @employeeId", new SqlParameter("@employeeId", UserId)).ToList<Employees>();
-            return Employee[0].EmployeeName;
+            try
+            {
+                var entity = new DatabaseContext();
+                Employees MatchingEmployee = entity.Employees.Where(x => x.EmployeeId == employeeID).FirstOrDefault();
+                return MatchingEmployee.EmployeeName;
+            }
+            catch (Exception ex)
+            {
+                return "Could not get Employee by Id! Please Contact Admin" + ex.StackTrace;
+            }
         }
-        public List<EmployeeLogs> GetAllEmployeesLogs()
+        public Employee GetEmployeeDetailsById(string employeeID)
         {
-            var entity = new VisitorsDatabaseContext();
-            List<EmployeeLogs> AllEmployeeLogs = entity.EmployeeLogs.FromSql("select * from EmployeeLogs").ToList<EmployeeLogs>();
-            return AllEmployeeLogs;
+            try
+            {
+                var entity = new DatabaseContext();
+                Employees MatchingEmployee = entity.Employees.Where(x => x.EmployeeId == employeeID).FirstOrDefault();
+                ToEmployee convert = new ToEmployee();
+                Employee TranslatedData = convert.ToEmployees(MatchingEmployee);
+                return TranslatedData;
+            }
+            catch (Exception ex)
+            {
+                Employee EmployeeData = new Employee();
+                EmployeeData.Error = true; 
+                return EmployeeData;
+            }
+        }
+        public List<EmployeeData> GetAllEmployeesLogs()
+        {
+            try
+            {
+                var entity = new DatabaseContext();
+                List<EmployeeLogs> AllEmployeeLogs = entity.EmployeeLogs.ToList<EmployeeLogs>();
+                ToEmployeeData convert = new ToEmployeeData();
+                List<EmployeeData> TranslatedData = convert.TranslateToEmployeeDataList(AllEmployeeLogs);
+                return TranslatedData;
+            }
+            catch (Exception ex)
+            {
+                List<EmployeeData> EmployeeData = new List<EmployeeData>();
+                EmployeeData[0].Error = true;
+                return EmployeeData;
+            }
         }
         public void AddEmployeeLog(string EmployeeId)
         {
-            var entity = new VisitorsDatabaseContext();
-            string EmployeeName = GetEmployeeNameById(EmployeeId);
-            entity.Database.ExecuteSqlCommand("Insert into EmployeeLogs(EmployeeId,EmployeeName,DateOfVisit,TimeOfEntry) values (@EmployeeId,@EmployeeName,@DateOfVisit,@TimeOfEntry)", new SqlParameter("@EmployeeId", EmployeeId), new SqlParameter("@EmployeeName", EmployeeName), new SqlParameter("@DateOfVisit", DateTime.Today), new SqlParameter("@TimeOfEntry", DateTime.Now));
+            try
+            {
+                var entity = new DatabaseContext();
+                string EmployeeName = GetEmployeeNameById(EmployeeId);
+                EmployeeLogs NewLog = new EmployeeLogs();
+                NewLog.EmployeeId = EmployeeId;
+                NewLog.EmployeeName = EmployeeName;
+                NewLog.DateOfVisit = DateTime.Today;
+                NewLog.TimeOfEntry = DateTime.Now.TimeOfDay;
+                entity.EmployeeLogs.Add(NewLog);
+                entity.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Could not Add Employee ! Please Contact Admin" + ex.StackTrace);
+            }
         }
-        public List<EmployeeLogs> GetEmployeeLogByName(string EmployeeName)
+        public string LogEmployeeExit(string EmplpyeeId)
         {
-            var entity = new VisitorsDatabaseContext();
-            List<EmployeeLogs> AllLogsByName = entity.EmployeeLogs.FromSql("select * from EmployeeLogs where EmployeeName = @employeeName", new SqlParameter("@employeeName", EmployeeName)).ToList<EmployeeLogs>();
-            return AllLogsByName;
+            try
+            {
+                var entity = new DatabaseContext();
+                EmployeeLogs Log = entity.EmployeeLogs.Where(entry => entry.EmployeeId == EmplpyeeId).FirstOrDefault();
+                Log.DateOfExit = DateTime.Today;
+                Log.TimeOfExit = DateTime.Now.TimeOfDay;
+                entity.SaveChanges();
+                return "Exit time successfully recorder";
+            }
+            catch (Exception ex)
+            {
+                return "Unable to log exit time";
+            }
+
         }
-        public List<EmployeeLogs> GetEmployeeLogsByDate(string fromDate, string toDate, string fromTime, string toTime)
+        public List<EmployeeData> GetEmployeeLogByName(string EmployeeName)
         {
-            var entity = new VisitorsDatabaseContext();
-            List<EmployeeLogs> AllLogsBetweenDateAndTime = entity.EmployeeLogs.FromSql("select * from EmployeeLogs where DateOfVisit between @fromDate And @toDate and TimeOfEntry >= @fromTime and TimeOfEntry <= @toTime", new SqlParameter("@fromDate", fromDate), new SqlParameter("@toDate", toDate), new SqlParameter("@fromTime", fromTime), new SqlParameter("@toTime", toTime)).ToList<EmployeeLogs>();
-            return AllLogsBetweenDateAndTime;
+            try
+            {
+                var entity = new DatabaseContext();
+                List<EmployeeLogs> AllLogsByName = entity.EmployeeLogs.Where(x => x.EmployeeName == EmployeeName).ToList<EmployeeLogs>();
+                ToEmployeeData convert = new ToEmployeeData();
+                List<EmployeeData> TranslatedData = convert.TranslateToEmployeeDataList(AllLogsByName);
+                return TranslatedData;
+            }
+            catch (Exception ex)
+            {
+                List<EmployeeData> EmployeeData = new List<EmployeeData>();
+                EmployeeData[0].Error = true;
+                return EmployeeData;
+            }
         }
-        public List<EmployeeLogs> GetEmployeeLogsByNameAndDate(string nameOfEmployee, string fromDate, string toDate, string fromTime, string toTime)
+        public List<EmployeeData> GetEmployeeLogsByDate(string fromDate, string toDate, string fromTime, string toTime)
         {
-            var entity = new VisitorsDatabaseContext();
-            List<EmployeeLogs> AllLogsByNameBetweenDateAndTime = entity.EmployeeLogs.FromSql("select * from EmployeeLogs where EmployeeName = @nameOfEmployee and DateOfVisit between @fromDate And @toDate and TimeOfEntry >= @fromTime and TimeOfEntry <= @toTime",new SqlParameter("@nameOfEmployee",nameOfEmployee), new SqlParameter("@fromDate", fromDate), new SqlParameter("@toDate", toDate), new SqlParameter("@fromTime", fromTime), new SqlParameter("@toTime", toTime)).ToList<EmployeeLogs>();
-            return AllLogsByNameBetweenDateAndTime;
+            try
+            {
+                var entity = new DatabaseContext();
+                List<EmployeeLogs> AllLogsBetweenDateAndTime = entity.EmployeeLogs.Where(entry => entry.DateOfVisit >= Convert.ToDateTime(fromDate).Date && entry.DateOfVisit <= Convert.ToDateTime(toDate).Date && entry.TimeOfEntry >= Convert.ToDateTime(fromTime).TimeOfDay && entry.TimeOfExit <= Convert.ToDateTime(toTime).TimeOfDay).ToList<EmployeeLogs>();
+                ToEmployeeData convert = new ToEmployeeData();
+                List<EmployeeData> TranslatedData = convert.TranslateToEmployeeDataList(AllLogsBetweenDateAndTime);
+                return TranslatedData;
+            }
+            catch (Exception ex)
+            {
+                List<EmployeeData> EmployeeData = new List<EmployeeData>();
+                EmployeeData[0].Error = true;
+                return EmployeeData;
+            }
+        }
+        public List<EmployeeData> GetEmployeeLogsByNameAndDate(string nameOfEmployee, string fromDate, string toDate, string fromTime, string toTime)
+        {
+            try
+            {
+                var entity = new DatabaseContext();
+                List<EmployeeLogs> AllLogsByNameBetweenDateAndTime = entity.EmployeeLogs.Where(entry => entry.EmployeeName == nameOfEmployee && entry.DateOfVisit >= Convert.ToDateTime(fromDate).Date && entry.DateOfVisit <= Convert.ToDateTime(toDate).Date && entry.TimeOfEntry >= Convert.ToDateTime(fromTime).TimeOfDay && entry.TimeOfExit <= Convert.ToDateTime(toTime).TimeOfDay).ToList<EmployeeLogs>();
+                ToEmployeeData convert = new ToEmployeeData();
+                List<EmployeeData> TranslatedData = convert.TranslateToEmployeeDataList(AllLogsByNameBetweenDateAndTime);
+                return TranslatedData;
+            }
+            catch (Exception ex)
+            {
+                List<EmployeeData> EmployeeData = new List<EmployeeData>();
+                EmployeeData[0].Error = true;
+                return EmployeeData;
+            }
+        }
+        public List<EmployeeData> GetEmployeeLogsById(string EmployeeId)
+        {
+            try
+            {
+                var entity = new DatabaseContext();
+                List<EmployeeLogs> MatchingLogs = entity.EmployeeLogs.Where(entry => entry.EmployeeId == EmployeeId).ToList<EmployeeLogs>();
+                ToEmployeeData convert = new ToEmployeeData();
+                List<EmployeeData> TranslatedData = convert.TranslateToEmployeeDataList(MatchingLogs);
+                return TranslatedData;
+            }
+            catch (Exception ex)
+            {
+                List<EmployeeData> EmployeeData = new List<EmployeeData>();
+                EmployeeData[0].Error = true;
+                return EmployeeData;
+            }
         }
     }
 }

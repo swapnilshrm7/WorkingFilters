@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>AdminsService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Contracts\Core.Contracts.csproj" />
+    <ProjectReference Include="..\EmployeeData\UI.Entities.csproj" />
+    <ProjectReference Include="..\EmployeeService\EmployeeService.csproj" />
+    <ProjectReference Include="..\GuardService\GuardService.csproj" />
+    <ProjectReference Include="..\Translations\Translations.csproj" />
+    <ProjectReference Include="..\VisitorService\VisitorService.csproj" />
+  </ItemGroup>
+
+</Project>
